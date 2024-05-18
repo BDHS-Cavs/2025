@@ -11,12 +11,12 @@
 /*  SwerveModule(int driveMotorChannel, int turningMotorChannel,
                int turningEncoderChannel, std::string turningEncoderCanbus);*/
 
-SwerveModule::SwerveModule(const int driveMotorChannel,
-                           const rev::CANSparkMax::MotorType driveMotorType,
-                           const int turningMotorChannel,
-                           const rev::CANSparkMax::MotorType turningMotorType,
-                           const int turningEncoderChannel,
-                           const std::string turningEncoderCanbus)
+SwerveModule::SwerveModule(int driveMotorChannel,
+                           rev::CANSparkMax::MotorType driveMotorType,
+                           int turningMotorChannel,
+                           rev::CANSparkMax::MotorType turningMotorType,
+                           int turningEncoderChannel,
+                           std::string turningEncoderCanbus)
     : m_driveMotor(driveMotorChannel, driveMotorType),
       m_turningMotor(turningMotorChannel, turningMotorType),
       m_turningEncoder(turningEncoderChannel, turningEncoderCanbus) {
@@ -40,7 +40,7 @@ SwerveModule::SwerveModule(const int driveMotorChannel,
 
 frc::SwerveModuleState SwerveModule::GetState() const {
   return {units::meters_per_second_t{m_driveEncoder.GetVelocity()},
-          units::radian_t{m_turningEncoder.GetPosition()}}; //TODO GetPosition or GetAbsolutePosition ???
+          units::radian_t{m_turningEncoder.GetPosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
 }
 
 frc::SwerveModulePosition SwerveModule::GetPosition() const {
