@@ -25,8 +25,8 @@ class SwerveModule {
  public:
   SwerveModule(int driveMotorChannel, rev::CANSparkMax::MotorType driveMotorType, int turningMotorChannel, rev::CANSparkMax::MotorType turningMotorType,
                int turningEncoderChannel, std::string turningEncoderCanbus);
-  frc::SwerveModuleState GetState() const;
-  frc::SwerveModulePosition GetPosition() const;
+  frc::SwerveModuleState GetState();
+  frc::SwerveModulePosition GetPosition();
   void SetDesiredState(const frc::SwerveModuleState& state);
 
  private:

@@ -38,20 +38,20 @@ SwerveModule::SwerveModule(int driveMotorChannel,
       -units::radian_t{std::numbers::pi}, units::radian_t{std::numbers::pi}); //TODO change to this, also change last 2 lines then. https://codedocs.revrobotics.com/cpp/classrev_1_1_spark_max_p_i_d_controller
 }
 
-frc::SwerveModuleState SwerveModule::GetState() const {
+frc::SwerveModuleState SwerveModule::GetState() {
   return {units::meters_per_second_t{m_driveEncoder.GetVelocity()},
           units::radian_t{m_turningEncoder.GetPosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
 }
 
-frc::SwerveModulePosition SwerveModule::GetPosition() const {
+frc::SwerveModulePosition SwerveModule::GetPosition() {
   return {units::meter_t{m_driveEncoder.GetPosition()},
-          units::radian_t{m_turningEncoder.GetPosition()}}; //TODO GetPosition or GetAbsolutePosition ???
+          units::radian_t{m_turningEncoder.GetPosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
 }
 
 void SwerveModule::SetDesiredState(
     const frc::SwerveModuleState& referenceState) {
   frc::Rotation2d encoderRotation{
-      units::radian_t{m_turningEncoder.GetPosition()}}; //TODO GetPosition or GetAbsolutePosition ???
+      units::radian_t{m_turningEncoder.GetPosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
 
   // Optimize the reference state to avoid spinning further than 90 degrees
   auto state =
@@ -70,7 +70,7 @@ void SwerveModule::SetDesiredState(
 
   // Calculate the turning motor output from the turning PID controller.
   const auto turnOutput = m_turningPIDController.Calculate(
-      units::radian_t{m_turningEncoder.GetPosition()}, state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ???
+      units::radian_t{m_turningEncoder.GetPosition().GetValue()}, state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ???
 
   const auto turnFeedforward = m_turnFeedforward.Calculate(
       m_turningPIDController.GetSetpoint().velocity);
