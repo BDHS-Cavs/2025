@@ -30,7 +30,9 @@ class Drivetrain {
       3.0_mps;  // 3 meters per second
   static constexpr units::radians_per_second_t kMaxAngularSpeed{
       std::numbers::pi};  // 1/2 rotation per second
-
+  
+  frc::ADXRS450_Gyro m_gyro;
+  
  private:
   frc::Translation2d m_frontLeftLocation{+0.381_m, +0.381_m};
   frc::Translation2d m_frontRightLocation{+0.381_m, -0.381_m};
@@ -51,7 +53,7 @@ const std::string turningEncoderCanbus
   SwerveModule m_backLeft{2, rev::CANSparkMax::MotorType::kBrushless, 6, rev::CANSparkMax::MotorType::kBrushless, 3, "rio"};
   SwerveModule m_backRight{3, rev::CANSparkMax::MotorType::kBrushless, 8, rev::CANSparkMax::MotorType::kBrushless, 4, "rio"};
 
-  frc::ADXRS450_Gyro m_gyro;
+
 
   frc::SwerveDriveKinematics<4> m_kinematics{
       m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation,
