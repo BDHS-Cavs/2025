@@ -94,21 +94,21 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {
+/*TODO remove? void Robot::TeleopPeriodic() {
   //DriveWithJoystick(true);
 
 //swerve drive with joystick
 //m_container->m_swerve.calculateVectors(m_container->getX(), m_container->getY(), m_container->getZ());
 //m_container->m_swerve.calculateVectors(1, 1, 0);
 
-}
+}*/
 
 /**
  * This function is called periodically during test mode.
  */
 void Robot::TestPeriodic() {}
 
-void DriveWithJoystick(bool fieldRelative) {
+void Robot::DriveWithJoystick(bool fieldRelative) {
     // Get the x speed. We are inverting this because Xbox controllers return
     // negative values when we push forward.
     const auto xSpeed = -m_xspeedLimiter.Calculate(

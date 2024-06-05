@@ -12,11 +12,9 @@
 
 class Robot : public frc::TimedRobot {
  public:
-  void AutonomousPeriodic() override {
-    DriveWithJoystick(false);
-    m_container->m_swerve.UpdateOdometry();
-  }
+  void DriveWithJoystick(bool fieldRelative);
   void TeleopPeriodic() override { DriveWithJoystick(true); }
+  void AutonomousPeriodic() override;
   void RobotInit() override;
   void RobotPeriodic() override;
   void DisabledInit() override;
@@ -24,6 +22,7 @@ class Robot : public frc::TimedRobot {
   void AutonomousInit() override;
   void TeleopInit() override;
   void TestPeriodic() override;
+
 
   void ConfigureButtonBindings();
 
