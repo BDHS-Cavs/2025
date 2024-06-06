@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SwerveModule.h"
-
+//TODO consider making subsystembase
 #include <numbers>
 
 #include <frc/geometry/Rotation2d.h>
@@ -35,7 +35,7 @@ SwerveModule::SwerveModule(int driveMotorChannel,
   // Limit the PID Controller's input range between -pi and pi and set the input
   // to be continuous.
   m_turningPIDController.EnableContinuousInput(
-      -units::radian_t{std::numbers::pi}, units::radian_t{std::numbers::pi}); //TODO change to this, also change last 2 lines then. https://codedocs.revrobotics.com/cpp/classrev_1_1_spark_max_p_i_d_controller
+      -units::radian_t{std::numbers::pi}, units::radian_t{std::numbers::pi});
 }
 
 frc::SwerveModuleState SwerveModule::GetState() {

@@ -8,8 +8,6 @@
 #include <frc2/command/CommandScheduler.h>
 
 void Robot::RobotInit() {
-  //TODO frc::CameraServer::GetVideo(); //i dont know if we need this line because it says use this if you want to use vision processing on the roborio but we do it on the 2nd camera (the limelight 2+) with photonvision
-  //TODO frc::CameraServer::StartAutomaticCapture(); //make usb cam (microsoft lifecam hd-3000) work
 
     usbcamera1 = frc::CameraServer::StartAutomaticCapture(0);
     usbcamera2 = frc::CameraServer::StartAutomaticCapture(1);
@@ -72,9 +70,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-//TODO CRASHES AUTO? but i dont think we need bc joystick disabled in auto anyway //  DriveWithJoystick(false);
-//TODO remove? remove the whole function? m_container->m_swerve.UpdateOdometry();
-//m_autonomousCommand->Execute();
+
 }
 
 void Robot::TeleopInit() {
@@ -83,25 +79,13 @@ void Robot::TeleopInit() {
   // continue until interrupted by another command, remove
   // this line or comment it out.
 
-  //TODO: might want to swerve update odometry and might want to reset climber/shooter encoders
+  //TODO: might want to swerve update odometry -czech swervebot example
   
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
 }
-
-/**
- * This function is called periodically during operator control.
- */
-/*TODO remove? void Robot::TeleopPeriodic() {
-  //DriveWithJoystick(true);
-
-//swerve drive with joystick
-//m_container->m_swerve.calculateVectors(m_container->getX(), m_container->getY(), m_container->getZ());
-//m_container->m_swerve.calculateVectors(1, 1, 0);
-
-}*/
 
 /**
  * This function is called periodically during test mode.

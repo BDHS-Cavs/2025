@@ -22,7 +22,7 @@ RobotContainer* RobotContainer::m_robotContainer = NULL;
 RobotContainer::RobotContainer() 
 {
 //RobotContainer::RobotContainer() : m_autonomousCommand(&m_drive, &m_climber, &m_shooter, &m_intake, &m_vision) { //broken??
-    //TODO broken frc::SmartDashboard::PutData(&m_swerve); 
+    //TODO broken frc::SmartDashboard::PutData(&m_swerve); -subsystembase
     frc::SmartDashboard::PutData(&m_climber);
     frc::SmartDashboard::PutData(&m_shooter);
     frc::SmartDashboard::PutData(&m_intake);
@@ -47,15 +47,6 @@ RobotContainer::RobotContainer()
     //frc::SmartDashboard::PutData("Auto Mode", &m_chooser);
 
 
-/*TODOm_drive.SetDefaultCommand(frc2::RunCommand(
-        [this]
-        {
-            m_drive.Motivate(
-                m_drivecontroller.GetLeftY(),
-                m_drivecontroller.GetLeftX());
-        },
-         {&m_drive}));
-*/
 }
 
 

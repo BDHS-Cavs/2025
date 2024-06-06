@@ -25,7 +25,7 @@ m_conveyer(m_conveyer)
     // Use AddRequirements() here to declare subsystem dependencies
     // eg. AddRequirements(m_Subsystem);
     SetName("CenterAuto");
-    //TODO broken AddRequirements(m_swerve);
+    //TODO broken AddRequirements(m_swerve); -subsystembased
     AddRequirements(m_climber);
     AddRequirements(m_shooter);
     AddRequirements(m_intake);
@@ -50,11 +50,9 @@ void CenterAuto::Execute() {
     units::second_t period5 = 6.8_s; //starts at 6.8 (1.5s)
     units::second_t period6 = 8.3_s; //starts at 8.3 (1.1s)
     units::second_t period7 = 9.4_s; //starts at 9.4 (1.1s)
-    units::second_t period8 = 10.5_s; //starts at 10.5 (2s)
-    units::second_t period9 = 12.5_s; //starts at 12.5 (1s)
-    units::second_t period10 = 13.5_s; //starts at 13.5 (1s)
-    units::second_t period11 = 15.0_s; //starts at 15.0 (1.5s)
-    //units::second_t period12 = X_s; //starts at X (Xs)
+    units::second_t period8 = 12.5_s; //starts at 12.5 (3.1s)
+    units::second_t period9 = 13.5_s; //starts at 13.5 (1s)
+    units::second_t period10 = 15.0_s; //starts at 15.0 (1.5s)
     if(m_firstTime)
     {
         m_timer.Reset();
@@ -97,27 +95,19 @@ void CenterAuto::Execute() {
             m_shooter->ShooterShoot(); //start running the shooter
             m_intake->IntakeStop(); //stop running the intake
     }
-    else if(m_timer.Get() >= period7 && m_timer.Get() < period8) //starts at 9.4 ends at 10.5 (1.1s)
-    {
-            m_shooter->ShooterShoot(); //TODO - its already running...
-    }
-    else if(m_timer.Get() >= period8 && m_timer.Get() < period9) //starts at 10.5 ends at 12.5 (2s)
+    else if(m_timer.Get() >= period7 && m_timer.Get() < period8) //starts at 9.4 ends at 12.5 (3.1s)
     {
             m_conveyer->ConveyerForward(); //start running the conveyer forward
     }
-    else if(m_timer.Get() >= period9 && m_timer.Get() < period10) //starts at 12.5 ends at 13.5 (1s)
+    else if(m_timer.Get() >= period8 && m_timer.Get() < period9) //starts at 12.5 ends at 13.5 (1s)
     {
             m_conveyer->ConveyerStop(); //stop running the conveyer
             m_shooter->ShooterStop(); //stop running the shooter
     }
-    else if(m_timer.Get() >= period10 && m_timer.Get() < period11) //starts at 13.5 ends at 15.0 (1.5s)
+    else if(m_timer.Get() >= period9 && m_timer.Get() < period10) //starts at 13.5 ends at 15.0 (1.5s)
     {
             //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards -- will not stop until end of auto
     }
-/*TODO delete    else if(m_timer.Get() >= period11 && m_timer.Get() < period12) //starts at X ends at X (Xs)
-    {
-            m_drive->DriveStop();
-    }*/
     else
     {
         // do nothing
