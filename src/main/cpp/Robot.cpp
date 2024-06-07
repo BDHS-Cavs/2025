@@ -79,7 +79,7 @@ void Robot::TeleopInit() {
   // continue until interrupted by another command, remove
   // this line or comment it out.
 
-  //TODO: might want to swerve update odometry -czech swervebot example
+  //TODO: might want to swerve update odometry - check swervebot example
   
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Cancel();

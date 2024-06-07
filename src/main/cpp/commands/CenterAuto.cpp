@@ -25,7 +25,7 @@ m_conveyer(m_conveyer)
     // Use AddRequirements() here to declare subsystem dependencies
     // eg. AddRequirements(m_Subsystem);
     SetName("CenterAuto");
-    //TODO broken AddRequirements(m_swerve); -subsystembased
+    //TODO broken AddRequirements(m_swerve); -subsystembase
     AddRequirements(m_climber);
     AddRequirements(m_shooter);
     AddRequirements(m_intake);
@@ -82,7 +82,7 @@ void CenterAuto::Execute() {
     }
     else if(m_timer.Get() >= period4 && m_timer.Get() < period5) //starts at 5.3 ends at 6.8 (1.5s)
     {
-        //TODO replacem_drive->AutoMotivateBackward(); //start driving backwards
+        //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards
         m_intake->IntakeRun(); //start running the intake
     }
     else if(m_timer.Get() >= period5 && m_timer.Get() < period6) //starts at 6.8 ends at 8.3 (1.5s)
