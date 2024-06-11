@@ -14,6 +14,8 @@
 
 #include "SwerveModule.h"
 
+#include "Constants.h"
+
 /**
  * Represents a swerve drive style drivetrain.
  */
@@ -40,18 +42,18 @@ class Drivetrain {
   frc::Translation2d m_backRightLocation{-0.381_m, -0.381_m};
 
 /*                         
-const int driveMotorChannel,
-const rev::CANSparkMax::MotorType driveMotorType,
-const int turningMotorChannel,
-const rev::CANSparkMax::MotorType turningMotorType,
-const int turningEncoderChannel,
-const std::string turningEncoderCanbus
+int driveMotorChannel
+rev::CANSparkMax::MotorType driveMotorType
+int turningMotorChannel
+rev::CANSparkMax::MotorType turningMotorType
+int turningEncoderChannel
+std::string turningEncoderCanbus
 */
 
-  SwerveModule m_frontLeft{0, rev::CANSparkMax::MotorType::kBrushless, 4, rev::CANSparkMax::MotorType::kBrushless, 1, "rio"};
-  SwerveModule m_frontRight{1, rev::CANSparkMax::MotorType::kBrushless, 5, rev::CANSparkMax::MotorType::kBrushless, 2, "rio"};
-  SwerveModule m_backLeft{2, rev::CANSparkMax::MotorType::kBrushless, 6, rev::CANSparkMax::MotorType::kBrushless, 3, "rio"};
-  SwerveModule m_backRight{3, rev::CANSparkMax::MotorType::kBrushless, 8, rev::CANSparkMax::MotorType::kBrushless, 4, "rio"};
+  SwerveModule m_frontLeft{DriveConstants::kFrontLeftDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontLeftTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontLeftTurningEncoderPort, "rio"};
+  SwerveModule m_frontRight{DriveConstants::kFrontRightDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontRightTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontRightTurningEncoderPort, "rio"};
+  SwerveModule m_backLeft{DriveConstants::kBackLeftDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackLeftTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackLeftTurningEncoderPort, "rio"};
+  SwerveModule m_backRight{DriveConstants::kBackRightDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackRightTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackRightTurningEncoderPort, "rio"};
 
 
 

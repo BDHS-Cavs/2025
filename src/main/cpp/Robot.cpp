@@ -70,7 +70,8 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-
+    DriveWithJoystick(false);
+    m_container->m_swerve.UpdateOdometry();
 }
 
 void Robot::TeleopInit() {
