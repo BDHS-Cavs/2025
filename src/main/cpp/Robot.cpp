@@ -70,7 +70,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-    DriveWithJoystick(false);
+    DriveWithJoystick(false);//TODO make sure this function is fine - looks fine according to swervebot example
     m_container->m_swerve.UpdateOdometry();
 }
 
@@ -79,8 +79,6 @@ void Robot::TeleopInit() {
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
   // this line or comment it out.
-
-  //TODO: might want to swerve update odometry - check swervebot example
   
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Cancel();

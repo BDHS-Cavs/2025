@@ -44,9 +44,9 @@ class SwerveModule {
   rev::SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder();
   ctre::phoenix6::hardware::CANcoder m_turningEncoder;
 
-  frc::PIDController m_drivePIDController{1.0, 0, 0};
+  frc::PIDController m_drivePIDController{1.0, 0, 0};//TODO try 5.0
   frc::ProfiledPIDController<units::radians> m_turningPIDController{
-      1.0,
+      1.0,//TODO try 5.0
       0.0,
       0.0,
       {kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration}};
