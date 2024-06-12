@@ -21,6 +21,8 @@
 #include <units/velocity.h>
 #include <units/voltage.h>
 
+#include "Constants.h"
+
 class SwerveModule {
  public:
   SwerveModule(int driveMotorChannel, rev::CANSparkMax::MotorType driveMotorType, int turningMotorChannel, rev::CANSparkMax::MotorType turningMotorType,
@@ -44,11 +46,11 @@ class SwerveModule {
   rev::SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder();
   ctre::phoenix6::hardware::CANcoder m_turningEncoder;
 
-  frc::PIDController m_drivePIDController{1.0, 0, 0};//TODO try 5.0
+  frc::PIDController m_drivePIDController{DriveConstants::kdriveP, DriveConstants::kdriveI, DriveConstants::kdriveD};
   frc::ProfiledPIDController<units::radians> m_turningPIDController{
-      1.0,//TODO try 5.0
-      0.0,
-      0.0,
+      DriveConstants::kturningP,
+      DriveConstants::kturningI,
+      DriveConstants::kturningD,
       {kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration}};
 
   frc::SimpleMotorFeedforward<units::meters> m_driveFeedforward{1_V,

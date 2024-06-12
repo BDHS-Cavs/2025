@@ -66,17 +66,11 @@ public:
     Conveyer m_conveyer;
 
     // Get the control values
-//    frc::XboxController *getJoystick(); //drivecontroller
     frc::PS4Controller *getJoystick();
     frc::XboxController *getController();
 
-//    frc::XboxController m_drivecontroller{0}; //drivecontroller
-    frc::PS4Controller m_drivecontroller{0};  
-    frc::XboxController m_controller{1};
-
-
-
-
+    frc::PS4Controller m_drivecontroller{OIConstants::kDriveControllerPort};  
+    frc::XboxController m_controller{OIConstants::kControllerPort};
 
 
 private:
