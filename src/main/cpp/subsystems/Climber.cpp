@@ -34,7 +34,7 @@ Climber::Climber(){
 
 void Climber::Periodic() {
     // Put code here to be run every loop
-    ClimberScanEncoders();
+    ClimberScanEncoders();//TODO needed???????? - what im saying is change it so it checks within the function instead of needing 2 functions
 }
 
 void Climber::SimulationPeriodic() {
@@ -81,7 +81,7 @@ void Climber::ClimberStop(){
     m_climberMotor2.Set(0.0);  
 }
 
-void Climber::ClimberScanEncoders(){//TODO delete - fixed by making command run the whole way through
+void Climber::ClimberScanEncoders(){//TODO needed???????? - what im saying is change it so it checks within the function instead of needing 2 functions
     // get climberencoder values for limit switch thingy
     ClimberEncoder2Value = m_climberEncoder2.GetPosition();
     frc::SmartDashboard::PutNumber("climberencoder2value", ClimberEncoder2Value);
