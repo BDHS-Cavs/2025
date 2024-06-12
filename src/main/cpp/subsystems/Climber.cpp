@@ -81,7 +81,7 @@ void Climber::ClimberStop(){
     m_climberMotor2.Set(0.0);  
 }
 
-void Climber::ClimberScanEncoders(){
+void Climber::ClimberScanEncoders(){//TODO delete - fixed by making command run the whole way through
     // get climberencoder values for limit switch thingy
     ClimberEncoder2Value = m_climberEncoder2.GetPosition();
     frc::SmartDashboard::PutNumber("climberencoder2value", ClimberEncoder2Value);
