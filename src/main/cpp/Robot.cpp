@@ -70,7 +70,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-    DriveWithJoystick(false);//TODO make sure this function is fine - looks fine according to swervebot example
+    DriveWithJoystick(false);//TODO make sure this function is fine - looks fine according to swervebot example - https://github.com/wpilibsuite/allwpilib/blob/main/wpilibcExamples/src/main/cpp/examples/SwerveBot/cpp/Robot.cpp
     m_container->m_swerve.UpdateOdometry();
 }
 

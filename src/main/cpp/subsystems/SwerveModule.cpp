@@ -40,18 +40,18 @@ SwerveModule::SwerveModule(int driveMotorChannel,
 
 frc::SwerveModuleState SwerveModule::GetState() {
   return {units::meters_per_second_t{m_driveEncoder.GetVelocity()},
-          units::radian_t{m_turningEncoder.GetPosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
+          units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 }
 
 frc::SwerveModulePosition SwerveModule::GetPosition() {
   return {units::meter_t{m_driveEncoder.GetPosition()},
-          units::radian_t{m_turningEncoder.GetPosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
+          units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
 }
 
 void SwerveModule::SetDesiredState(
     const frc::SwerveModuleState& referenceState) {
   frc::Rotation2d encoderRotation{
-      units::radian_t{m_turningEncoder.GetPosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
+      units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
 
   // Optimize the reference state to avoid spinning further than 90 degrees
   auto state =
@@ -70,7 +70,7 @@ void SwerveModule::SetDesiredState(
 
   // Calculate the turning motor output from the turning PID controller.
   const auto turnOutput = m_turningPIDController.Calculate(
-      units::radian_t{m_turningEncoder.GetPosition().GetValue()}, state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ???
+      units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}, state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ???
 
   const auto turnFeedforward = m_turnFeedforward.Calculate(
       m_turningPIDController.GetSetpoint().velocity);
