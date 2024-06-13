@@ -20,13 +20,13 @@ Climber::Climber(){
     SetName("Climber");
     SetSubsystem("Climber");
 
-    //AddChild("ClimberMotor1", &m_climberMotor1);
+    //AddChild("ClimberMotor1", &m_climberMotor1);//todo
     m_climberMotor1.SetInverted(false);
 
-    //AddChild("ClimberMotor2", &m_climberMotor2);
+    //AddChild("ClimberMotor2", &m_climberMotor2);//todo
     m_climberMotor2.SetInverted(true);
 
-    //AddChild("ClimberMotors", &m_climberMotors);
+    //AddChild("ClimberMotors", &m_climberMotors);//todo
 
     m_climberMotor1.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);
     m_climberMotor2.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);
@@ -34,7 +34,6 @@ Climber::Climber(){
 
 void Climber::Periodic() {
     // Put code here to be run every loop
-    ClimberScanEncoders();//TODO needed???????? - what im saying is change it so it checks within the function instead of needing 2 functions
 }
 
 void Climber::SimulationPeriodic() {
@@ -43,8 +42,9 @@ void Climber::SimulationPeriodic() {
 // Put methods for controlling this subsystem here and call from commands
 
 void Climber::ClimberRaise(){ 
-    // Run Climber
-    if(ClimberEncoder2Value > -492)
+    // Run Climber Raise
+    frc::SmartDashboard::PutNumber("Climber Encoder 2 Value", m_climberEncoder2.GetPosition());
+    if(m_climberEncoder2.GetPosition() > -492)
     {
         m_climberMotor1.Set(-1.0);
         m_climberMotor2.Set(-1.0);
@@ -54,14 +54,12 @@ void Climber::ClimberRaise(){
         m_climberMotor1.Set(0.0);
         m_climberMotor2.Set(0.0);
     }
-        //m_climberMotor1.Set(-0.5);
-        //m_climberMotor2.Set(-0.5); 
 } 
 
 void Climber::ClimberLower(){
-    // Run Expel
-
-    if(ClimberEncoder2Value < 0)
+    // Run Climber Lower
+    frc::SmartDashboard::PutNumber("Climber Encoder 2 Value", m_climberEncoder2.GetPosition());
+    if(m_climberEncoder2.GetPosition() < 0)
     {
         m_climberMotor1.Set(1.0);
         m_climberMotor2.Set(1.0);
@@ -71,18 +69,10 @@ void Climber::ClimberLower(){
         m_climberMotor1.Set(0.0);
         m_climberMotor2.Set(0.0);
     }
-        //m_climberMotor1.Set(0.5);
-        //m_climberMotor2.Set(0.5);
 }
 
 void Climber::ClimberStop(){
-    // stop the Climber motor
+    // Stop the Climber motors
     m_climberMotor1.Set(0.0);
     m_climberMotor2.Set(0.0);  
-}
-
-void Climber::ClimberScanEncoders(){//TODO needed???????? - what im saying is change it so it checks within the function instead of needing 2 functions
-    // get climberencoder values for limit switch thingy
-    ClimberEncoder2Value = m_climberEncoder2.GetPosition();
-    frc::SmartDashboard::PutNumber("climberencoder2value", ClimberEncoder2Value);
 }

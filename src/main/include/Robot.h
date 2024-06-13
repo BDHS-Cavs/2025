@@ -30,13 +30,12 @@ class Robot : public frc::TimedRobot {
   frc::SlewRateLimiter<units::scalar> m_yspeedLimiter{3 / 1_s};
   frc::SlewRateLimiter<units::scalar> m_rotLimiter{3 / 1_s};
 
-  RobotContainer* m_container = RobotContainer::GetInstance(); //had to move to public to work with Swerve_Drive command
+  RobotContainer* m_container = RobotContainer::GetInstance();
 
 
  private:
   // Have it null by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
-  //std::optional<frc2::CommandPtr> m_autonomousCommand;
 
   // Have it null by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
@@ -44,9 +43,6 @@ class Robot : public frc::TimedRobot {
 
   cs::UsbCamera usbcamera1;
   cs::UsbCamera usbcamera2;
-  //cs::AxisCamera ethernetcamera;
 
   cs::VideoSink cameraserver;
-
-
 };

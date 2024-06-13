@@ -20,7 +20,7 @@
 class Intake: public frc2::SubsystemBase {
 
 private:
-    ctre::phoenix::motorcontrol::can::TalonSRX m_intakeMotor{IntakeConstants::kIntakeMotorPort}; //tuned value
+    ctre::phoenix::motorcontrol::can::TalonSRX m_intakeMotor{IntakeConstants::kIntakeMotorPort};
 public:
     Intake();
 

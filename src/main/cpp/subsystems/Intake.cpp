@@ -42,6 +42,6 @@ void Intake::IntakeExpel(){
 }
 
 void Intake::IntakeStop(){
-    // stop the intake motor
+    // Stop the intake motor
     m_intakeMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0.0);
 }

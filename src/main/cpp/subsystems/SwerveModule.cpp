@@ -8,9 +8,6 @@
 
 #include <frc/geometry/Rotation2d.h>
 
-/*  SwerveModule(int driveMotorChannel, int turningMotorChannel,
-               int turningEncoderChannel, std::string turningEncoderCanbus);*/
-
 SwerveModule::SwerveModule(int driveMotorChannel,
                            rev::CANSparkMax::MotorType driveMotorType,
                            int turningMotorChannel,
@@ -23,14 +20,14 @@ SwerveModule::SwerveModule(int driveMotorChannel,
   // Set the distance per pulse for the drive encoder. We can simply use the
   // distance traveled for one rotation of the wheel divided by the encoder
   // resolution.
-  //TODO DELETE m_driveEncoder.SetDistancePerPulse(2 * std::numbers::pi * kWheelRadius /
-  //TODO DELETE                                    kEncoderResolution);
+
+  //m_driveEncoder.SetDistancePerPulse(2 * std::numbers::pi * kWheelRadius / kEncoderResolution);
 
   // Set the distance (in this case, angle) per pulse for the turning encoder.
   // This is the the angle through an entire rotation (2 * std::numbers::pi)
   // divided by the encoder resolution.
-  //TODO DELETE m_turningEncoder.SetDistancePerPulse(2 * std::numbers::pi /
-  //TODO DELETE                                      kEncoderResolution);
+
+  //m_turningEncoder.SetDistancePerPulse(2 * std::numbers::pi / kEncoderResolution);
 
   // Limit the PID Controller's input range between -pi and pi and set the input
   // to be continuous.
@@ -45,13 +42,13 @@ frc::SwerveModuleState SwerveModule::GetState() {
 
 frc::SwerveModulePosition SwerveModule::GetPosition() {
   return {units::meter_t{m_driveEncoder.GetPosition()},
-          units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
+          units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 }
 
 void SwerveModule::SetDesiredState(
     const frc::SwerveModuleState& referenceState) {
   frc::Rotation2d encoderRotation{
-      units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ???
+      units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 
   // Optimize the reference state to avoid spinning further than 90 degrees
   auto state =
@@ -70,7 +67,7 @@ void SwerveModule::SetDesiredState(
 
   // Calculate the turning motor output from the turning PID controller.
   const auto turnOutput = m_turningPIDController.Calculate(
-      units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}, state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ???
+      units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}, state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 
   const auto turnFeedforward = m_turnFeedforward.Calculate(
       m_turningPIDController.GetSetpoint().velocity);

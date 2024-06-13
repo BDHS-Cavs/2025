@@ -31,7 +31,7 @@ class Drivetrain {
   static constexpr units::meters_per_second_t kMaxSpeed =
       3.0_mps;  // 3 meters per second
   static constexpr units::radians_per_second_t kMaxAngularSpeed{
-      std::numbers::pi};  // 1/2 rotation per second
+      std::numbers::pi};  // 1/2 rotation per second - todo ???
   
   frc::ADXRS450_Gyro m_gyro;
   

@@ -13,14 +13,14 @@
 #include "subsystems/Conveyer.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <wpi/raw_ostream.h> // for wpi outs()
+#include <wpi/raw_ostream.h> // for wpi outs() //todo unused???
 
 
 Conveyer::Conveyer(){
     SetName("Conveyer");
     SetSubsystem("Conveyer");
 
-    //AddChild("ConveyerMotor", &m_conveyerMotor);
+    //AddChild("ConveyerMotor", &m_conveyerMotor);//todo
     m_conveyerMotor.SetInverted(false);
 }
 
@@ -44,6 +44,6 @@ void Conveyer::ConveyerBackward(){
 }
 
 void Conveyer::ConveyerStop(){
-    // stop the Climber motor
+    // Stop the Conveyer motor
     m_conveyerMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0.0);
 }

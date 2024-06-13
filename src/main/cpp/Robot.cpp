@@ -11,16 +11,13 @@ void Robot::RobotInit() {
 
     usbcamera1 = frc::CameraServer::StartAutomaticCapture(0);
     usbcamera2 = frc::CameraServer::StartAutomaticCapture(1);
-    //ethernetcamera = frc::CameraServer::AddAxisCamera("10.29.78.11");
-//    ethernetcamera = frc::CameraServer::StartAutomaticCapture(2);
 
     usbcamera1.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
     usbcamera2.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
-    //ethernetcamera.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
 
     cameraserver = frc::CameraServer::GetServer();
 
-  m_container->m_swerve.m_gyro.Calibrate(); //calibrate gyro
+  m_container->m_swerve.m_gyro.Calibrate();
 }
 
 /**
@@ -87,7 +84,7 @@ void Robot::TeleopInit() {
  */
 void Robot::TestPeriodic() {}
 
-void Robot::DriveWithJoystick(bool fieldRelative) {
+void Robot::DriveWithJoystick(bool fieldRelative) { //TODO make sure works with teleop function
     // Get the x speed. We are inverting this because Xbox controllers return
     // negative values when we push forward.
     const auto xSpeed = -m_xspeedLimiter.Calculate(

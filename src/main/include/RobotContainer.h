@@ -77,28 +77,10 @@ private:
 
     RobotContainer();
 
-    // Joysticks
-
-
-    
-    // For Multiple Autos
-    // The chooser for the autonomous modes
-    //frc::SendableChooser<frc2::Command*> m_chooser; //BROKEN chooser stuff
-    
-    // The autonomous modes //BROKEN chooser stuff
-    //frc2::CommandPtr m_leftAuto = autos::LeftAuto(&m_arm, &m_drive, &m_grabber);
-    //frc2::CommandPtr m_rightAuto = autos::RightAuto(&m_arm, &m_drive, &m_grabber);
-    //frc2::CommandPtr m_centerAuto = autos::CenterAuto(&m_arm, &m_drive, &m_grabber);
-
-    //frc::SendableChooser<frc2::Command*> m_chooser; //if i remove all the chooser stuff, auto crashes, so i just leave it alone but still use the single autonomouscommand.cpp
-
     static RobotContainer* m_robotContainer;
     void ConfigureButtonBindings();
-
-
-
-
-      // The autonomous routines
+    
+    // The autonomous routines
   LeftAuto m_leftAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
   RightAuto m_rightAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
   CenterAuto m_centerAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};

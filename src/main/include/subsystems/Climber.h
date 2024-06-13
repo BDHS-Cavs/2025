@@ -12,7 +12,6 @@
 
 #pragma once
 
-//#include <ctre/phoenix/motorcontrol/can/TalonSRX.h>
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
@@ -24,7 +23,7 @@ class Climber: public frc2::SubsystemBase {
 private:
     rev::CANSparkMax m_climberMotor1{ClimberConstants::kClimberMotor1Port, rev::CANSparkMax::MotorType::kBrushless};
     rev::CANSparkMax m_climberMotor2{ClimberConstants::kClimberMotor2Port, rev::CANSparkMax::MotorType::kBrushless};
-    //frc::MotorControllerGroup m_climberMotors{m_climberMotor1, m_climberMotor2};
+    //frc::MotorControllerGroup m_climberMotors{m_climberMotor1, m_climberMotor2};//todo delete? or use spark groups
     
 public:
     Climber();
@@ -34,11 +33,7 @@ public:
     void ClimberRaise();
     void ClimberLower();
     void ClimberStop();
-    void ClimberScanEncoders();
 
     rev::SparkRelativeEncoder m_climberEncoder1 = m_climberMotor1.GetEncoder();
     rev::SparkRelativeEncoder m_climberEncoder2 = m_climberMotor2.GetEncoder();
-
-    double ClimberEncoder2Value;
-
 };

@@ -15,14 +15,13 @@
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/RunCommand.h>
 #include <frc/smartdashboard/SmartDashboard.h>
-//#include "frc/shuffleboard/Shuffleboard.h"
+//#include "frc/shuffleboard/Shuffleboard.h" //todo check it out
 
 RobotContainer* RobotContainer::m_robotContainer = NULL;
 
 RobotContainer::RobotContainer() 
 {
-//RobotContainer::RobotContainer() : m_autonomousCommand(&m_drive, &m_climber, &m_shooter, &m_intake, &m_vision) { //TODO broken??
-    //TODO broken frc::SmartDashboard::PutData(&m_swerve); - subsystembase
+  //TODO broken frc::SmartDashboard::PutData(&m_swerve); - subsystembase
     frc::SmartDashboard::PutData(&m_climber);
     frc::SmartDashboard::PutData(&m_shooter);
     frc::SmartDashboard::PutData(&m_intake);
@@ -33,20 +32,9 @@ RobotContainer::RobotContainer()
   m_chooser.AddOption("Right Auto", &m_rightAuto);
   m_chooser.AddOption("Center Auto", &m_centerAuto);
 
-//  frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser); //add chooser to shuffleboard
   frc::SmartDashboard::PutData(&m_chooser);
-
-
-
-    // SmartDashboard Buttons
-    //frc::SmartDashboard::PutData("Autonomous Command", new AutonomousCommand(&m_drive, &m_climber, &m_shooter, &m_intake, &m_vision, &m_conveyer));
 	
-    ConfigureButtonBindings();
-
-    //m_chooser.SetDefaultOption("Autonomous Command", new AutonomousCommand(&m_drive, &m_climber, &m_shooter, &m_intake, &m_vision, &m_conveyer));
-    //frc::SmartDashboard::PutData("Auto Mode", &m_chooser);
-
-
+  ConfigureButtonBindings();
 }
 
 
@@ -79,9 +67,9 @@ m_controllerButton7.WhileTrue(ConveyerBackwardCommand(&m_conveyer).ToPtr());    
 m_controllerButton8.WhileTrue(ConveyerForwardCommand(&m_conveyer).ToPtr());                                // Conveyer Forward (pov right)  (d pad right)
 }
 
-//frc::XboxController* RobotContainer::getJoystick() {
-//   return &m_drivecontroller;
-//}
+/*frc::XboxController* RobotContainer::getJoystick() {
+   return &m_drivecontroller;
+}*/
 frc::PS4Controller* RobotContainer::getJoystick() {
     return &m_drivecontroller;
 }

@@ -6,15 +6,13 @@
 
 #include <numbers>
 
-//#include <frc/Encoder.h>
 #include <rev/SparkRelativeEncoder.h>
-#include <ctre/phoenix6/CANcoder.hpp> //#include <ctre/phoenix/sensors/CANCoder.h>
+#include <ctre/phoenix6/CANcoder.hpp> //#include <ctre/phoenix/sensors/CANCoder.h> - phoenix 5 - dont think we need todo
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
 #include <frc/controller/SimpleMotorFeedforward.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/SwerveModuleState.h>
-//#include <frc/motorcontrol/PWMSparkMax.h>
 #include <rev/CANSparkMax.h>
 #include <units/angular_velocity.h>
 #include <units/time.h>
@@ -32,8 +30,8 @@ class SwerveModule {
   void SetDesiredState(const frc::SwerveModuleState& state);
 
  private:
-  //TODO delete? static constexpr double kWheelRadius = 0.0508;
-  //TODO delete? static constexpr int kEncoderResolution = 4096;
+  //static constexpr double kWheelRadius = 0.0508;
+  //static constexpr int kEncoderResolution = 4096;
 
   static constexpr auto kModuleMaxAngularVelocity =
       std::numbers::pi * 1_rad_per_s;  // radians per second

@@ -28,7 +28,6 @@
  */
 
 namespace DriveConstants {
-//drive constants
 //driving ports
 constexpr int kFrontLeftDriveMotorPort = 3;                //sm4d
 constexpr int kBackLeftDriveMotorPort = 5;                 //sm3d
@@ -40,10 +39,10 @@ constexpr int kBackLeftTurningMotorPort = 6;               //sm3s
 constexpr int kFrontRightTurningMotorPort = 10;            //sm1s
 constexpr int kBackRightTurningMotorPort = 2;              //sm2s
 
-constexpr int kFrontLeftTurningEncoderPort = 1;              //sm4s
-constexpr int kBackLeftTurningEncoderPort = 2;               //sm3s
-constexpr int kFrontRightTurningEncoderPort = 3;             //sm1s
-constexpr int kBackRightTurningEncoderPort = 4;              //sm2s
+constexpr int kFrontLeftTurningEncoderPort = 1;            //sm4s
+constexpr int kBackLeftTurningEncoderPort = 2;             //sm3s
+constexpr int kFrontRightTurningEncoderPort = 3;           //sm1s
+constexpr int kBackRightTurningEncoderPort = 4;            //sm2s
 
 //driving pid
 constexpr double kdriveP = 1.0; //TODO try 5.0
@@ -64,7 +63,7 @@ constexpr int kClimberMotor2Port = 15; //spark
 
 namespace IntakeConstants {
 //intake (TalonSRX)
-constexpr int kIntakeMotorPort = 1;
+constexpr int kIntakeMotorPort = 1; //talonsrx
 }
 
 namespace ShooterConstants {
@@ -75,11 +74,11 @@ constexpr int kShooterMotor2Port = 13; //spark
 
 namespace ConveyerConstants {
 //conveyer (TalonSRX)
-constexpr int kConveyerMotorPort = 8;
+constexpr int kConveyerMotorPort = 8; //talonsrx
 }
 
 namespace ModuleConstants {
-
+//todo ???
 }
 
 namespace AutoConstants {
@@ -87,7 +86,7 @@ namespace AutoConstants {
 extern const frc::TrapezoidProfile<units::radians>::Constraints
     kThetaControllerConstraints; //TODO wtf is this
 
-}  // namespace AutoConstants
+}
 
 namespace OIConstants {
 constexpr int kDriveControllerPort = 0;
