@@ -21,7 +21,7 @@ RobotContainer* RobotContainer::m_robotContainer = NULL;
 
 RobotContainer::RobotContainer() 
 {
-  //TODO broken frc::SmartDashboard::PutData(&m_swerve); - subsystembase
+    frc::SmartDashboard::PutData(&m_swerve);
     frc::SmartDashboard::PutData(&m_climber);
     frc::SmartDashboard::PutData(&m_shooter);
     frc::SmartDashboard::PutData(&m_intake);

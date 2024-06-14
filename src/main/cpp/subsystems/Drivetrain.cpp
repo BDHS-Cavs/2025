@@ -3,7 +3,18 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/Drivetrain.h"
-//TODO consider making subsystembase
+
+Drivetrain::Drivetrain(){
+    m_gyro.Reset();
+    SetName("Drivetrain");
+    SetSubsystem("Drivetrain");
+}
+void Drivetrain::Periodic() {
+    // Put code here to be run every loop
+}
+
+void Drivetrain::SimulationPeriodic() {
+}
 void Drivetrain::Drive(units::meters_per_second_t xSpeed,
                        units::meters_per_second_t ySpeed,
                        units::radians_per_second_t rot, bool fieldRelative,

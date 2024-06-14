@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SwerveModule.h"
-//TODO consider making subsystembase
+
 #include <numbers>
 
 #include <frc/geometry/Rotation2d.h>
@@ -17,6 +17,9 @@ SwerveModule::SwerveModule(int driveMotorChannel,
     : m_driveMotor(driveMotorChannel, driveMotorType),
       m_turningMotor(turningMotorChannel, turningMotorType),
       m_turningEncoder(turningEncoderChannel, turningEncoderCanbus) {
+        
+    SetName("SwerveModule");
+    SetSubsystem("SwerveModule");
   // Set the distance per pulse for the drive encoder. We can simply use the
   // distance traveled for one rotation of the wheel divided by the encoder
   // resolution.
@@ -33,6 +36,13 @@ SwerveModule::SwerveModule(int driveMotorChannel,
   // to be continuous.
   m_turningPIDController.EnableContinuousInput(
       -units::radian_t{std::numbers::pi}, units::radian_t{std::numbers::pi});
+}
+
+void SwerveModule::Periodic() {
+    // Put code here to be run every loop
+}
+
+void SwerveModule::SimulationPeriodic() {
 }
 
 frc::SwerveModuleState SwerveModule::GetState() {

@@ -6,6 +6,8 @@
 
 #include <numbers>
 
+#include <frc2/command/SubsystemBase.h>
+
 #include <rev/SparkRelativeEncoder.h>
 #include <ctre/phoenix6/CANcoder.hpp> //#include <ctre/phoenix/sensors/CANCoder.h> - phoenix 5 - dont think we need todo
 #include <frc/controller/PIDController.h>
@@ -21,10 +23,12 @@
 
 #include "Constants.h"
 
-class SwerveModule {
+class SwerveModule: public frc2::SubsystemBase {
  public:
   SwerveModule(int driveMotorChannel, rev::CANSparkMax::MotorType driveMotorType, int turningMotorChannel, rev::CANSparkMax::MotorType turningMotorType,
                int turningEncoderChannel, std::string turningEncoderCanbus);
+  void Periodic() override;
+  void SimulationPeriodic() override;
   frc::SwerveModuleState GetState();
   frc::SwerveModulePosition GetPosition();
   void SetDesiredState(const frc::SwerveModuleState& state);

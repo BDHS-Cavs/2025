@@ -6,6 +6,8 @@
 
 #include <numbers>
 
+#include <frc2/command/SubsystemBase.h>
+
 #include <frc/ADXRS450_Gyro.h>
 #include <frc/geometry/Translation2d.h>
 #include <frc/kinematics/SwerveDriveKinematics.h>
@@ -19,13 +21,15 @@
 /**
  * Represents a swerve drive style drivetrain.
  */
-class Drivetrain {
+class Drivetrain: public frc2::SubsystemBase {
  public:
-  Drivetrain() { m_gyro.Reset(); }
+  Drivetrain();
 
   void Drive(units::meters_per_second_t xSpeed,
              units::meters_per_second_t ySpeed, units::radians_per_second_t rot,
              bool fieldRelative, units::second_t period);
+  void Periodic() override;
+  void SimulationPeriodic() override;
   void UpdateOdometry();
 
   static constexpr units::meters_per_second_t kMaxSpeed =
