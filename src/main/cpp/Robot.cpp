@@ -84,7 +84,7 @@ void Robot::TeleopInit() {
  */
 void Robot::TestPeriodic() {}
 
-void Robot::DriveWithJoystick(bool fieldRelative) { //TODO make sure works with teleop function
+void Robot::DriveWithJoystick(bool fieldRelative) { //TODO make sure this calls periodically (must test)
     // Get the x speed. We are inverting this because Xbox controllers return
     // negative values when we push forward.
     const auto xSpeed = -m_xspeedLimiter.Calculate(

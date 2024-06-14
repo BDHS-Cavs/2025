@@ -35,12 +35,12 @@ class Drivetrain: public frc2::SubsystemBase {
   static constexpr units::meters_per_second_t kMaxSpeed =
       3.0_mps;  // 3 meters per second
   static constexpr units::radians_per_second_t kMaxAngularSpeed{
-      std::numbers::pi};  // 1/2 rotation per second - todo ???
+      std::numbers::pi};  // 1/2 rotation per second - todo ??? half?
   
   frc::ADXRS450_Gyro m_gyro;
   
  private:
-  frc::Translation2d m_frontLeftLocation{+0.381_m, +0.381_m};
+  frc::Translation2d m_frontLeftLocation{+0.381_m, +0.381_m};//TODO find
   frc::Translation2d m_frontRightLocation{+0.381_m, -0.381_m};
   frc::Translation2d m_backLeftLocation{-0.381_m, +0.381_m};
   frc::Translation2d m_backRightLocation{-0.381_m, -0.381_m};
