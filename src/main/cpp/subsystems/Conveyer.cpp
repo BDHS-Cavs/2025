@@ -13,14 +13,13 @@
 #include "subsystems/Conveyer.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <wpi/raw_ostream.h> // for wpi outs() //todo unused???
+#include <wpi/raw_ostream.h>
 
 
 Conveyer::Conveyer(){
     SetName("Conveyer");
     SetSubsystem("Conveyer");
 
-    //AddChild("ConveyerMotor", &m_conveyerMotor);//todo
     m_conveyerMotor.SetInverted(false);
 }
 

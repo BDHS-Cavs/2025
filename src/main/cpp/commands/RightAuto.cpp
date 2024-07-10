@@ -76,15 +76,15 @@ void RightAuto::Execute() {
     {
         m_shooter->ShooterStop(); //stop running the shooter
         m_conveyer->ConveyerStop(); //stop running the conveyer
-        //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards
+        m_swerve->AutoDriveBackwards(); //start driving backwards
     }
     else if(m_timer.Get() >= period4 && m_timer.Get() < period5) //starts at 5.5 ends at 6.25 (0.75s)
     {
-        //TODO replace m_drive->AutoMotivateRotateRight(); //start rotating to the right
+        m_swerve->AutoRotateRight(); //start rotating to the right
     }
     else if(m_timer.Get() >= period5 && m_timer.Get() < period6) //starts at 6.25 ends at 7.75 (1.5s)
     {
-        //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards for 1.5s (also stops rotating from period4)
+        m_swerve->AutoDriveBackwards(); //start driving backwards for 1.5s (also stops rotating from period4)
     }
     else
     {
@@ -100,7 +100,7 @@ bool RightAuto::IsFinished() {
 
 // Called once after isFinished returns true
 void RightAuto::End(bool interrupted) {
-    //TODO replace m_drive->DriveStop();
+    m_swerve->DriveStop();
     m_shooter->ShooterStop();
     m_intake->IntakeStop();
     m_climber->ClimberStop();

@@ -31,6 +31,11 @@ class Drivetrain: public frc2::SubsystemBase {
   void Periodic() override;
   void SimulationPeriodic() override;
   void UpdateOdometry();
+  void DriveStop();
+  void AutoDriveBackwards();
+  void AutoDriveForwards();
+  void AutoRotateLeft();
+  void AutoRotateRight();
 
   static constexpr units::meters_per_second_t kMaxSpeed =
       3.0_mps;  // 3 meters per second

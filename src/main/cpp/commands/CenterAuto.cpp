@@ -82,16 +82,16 @@ void CenterAuto::Execute() {
     }
     else if(m_timer.Get() >= period4 && m_timer.Get() < period5) //starts at 5.3 ends at 6.8 (1.5s)
     {
-        //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards
+        m_swerve->AutoDriveBackwards(); //start driving backwards
         m_intake->IntakeRun(); //start running the intake
     }
     else if(m_timer.Get() >= period5 && m_timer.Get() < period6) //starts at 6.8 ends at 8.3 (1.5s)
     {
-        //TODO replace m_drive->AutoMotivateForward(); //start driving forward
+        m_swerve->AutoDriveForwards(); //start driving forwards
     }
     else if(m_timer.Get() >= period6 && m_timer.Get() < period7) //starts at 8.3 ends at 9.4 (1.1s)
     {
-            //TODO replace m_drive->DriveStop(); //stop driving
+            m_swerve->DriveStop(); //stop driving
             m_shooter->ShooterShoot(); //start running the shooter
             m_intake->IntakeStop(); //stop running the intake
     }
@@ -106,7 +106,7 @@ void CenterAuto::Execute() {
     }
     else if(m_timer.Get() >= period9 && m_timer.Get() < period10) //starts at 13.5 ends at 15.0 (1.5s)
     {
-            //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards -- will not stop until end of auto
+            m_swerve->AutoDriveBackwards(); //start driving backwards -- will not stop until end of auto
     }
     else
     {
@@ -122,7 +122,7 @@ bool CenterAuto::IsFinished() {
 
 // Called once after isFinished returns true
 void CenterAuto::End(bool interrupted) {
-    //TODO replace m_drive->DriveStop();
+    m_swerve->DriveStop();
     m_shooter->ShooterStop();
     m_intake->IntakeStop();
     m_climber->ClimberStop();

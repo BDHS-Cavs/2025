@@ -76,15 +76,15 @@ void LeftAuto::Execute() {
     {
         m_shooter->ShooterStop(); //stop running the shooter
         m_conveyer->ConveyerStop(); //stop running the conveyer
-        //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards
+        m_swerve->AutoDriveBackwards(); //start driving backwards
     }
     else if(m_timer.Get() >= period4 && m_timer.Get() < period5) //starts at 5.5 ends at 6.25 (0.75s)
     {
-        //TODO replace m_drive->AutoMotivateRotateLeft(); //start rotating to the left
+        m_swerve->AutoRotateLeft(); //start rotating to the left
     }
     else if(m_timer.Get() >= period5 && m_timer.Get() < period6) //starts at 6.25 ends at 7.55 (1.3s)
     {
-        //TODO replace m_drive->AutoMotivateBackward(); //start driving backwards for 1.3s
+        m_swerve->AutoDriveBackwards(); //start driving backwards for 1.3s
     }
     else
     {
@@ -100,7 +100,7 @@ bool LeftAuto::IsFinished() {
 
 // Called once after isFinished returns true
 void LeftAuto::End(bool interrupted) {
-    //TODO replace m_drive->DriveStop();
+    m_swerve->DriveStop();
     m_shooter->ShooterStop();
     m_intake->IntakeStop();
     m_climber->ClimberStop();

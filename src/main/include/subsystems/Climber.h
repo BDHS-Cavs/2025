@@ -23,7 +23,6 @@ class Climber: public frc2::SubsystemBase {
 private:
     rev::CANSparkMax m_climberMotor1{ClimberConstants::kClimberMotor1Port, rev::CANSparkMax::MotorType::kBrushless};
     rev::CANSparkMax m_climberMotor2{ClimberConstants::kClimberMotor2Port, rev::CANSparkMax::MotorType::kBrushless};
-    //frc::MotorControllerGroup m_climberMotors{m_climberMotor1, m_climberMotor2};//todo delete? or use spark groups
     
 public:
     Climber();

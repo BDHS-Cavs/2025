@@ -34,10 +34,32 @@ void Drivetrain::Drive(units::meters_per_second_t xSpeed,
   m_frontRight.SetDesiredState(fr);
   m_backLeft.SetDesiredState(bl);
   m_backRight.SetDesiredState(br);
+
+  //TODO brake or coast mode
 }
 
 void Drivetrain::UpdateOdometry() {
   m_odometry.Update(m_gyro.GetRotation2d(),
                     {m_frontLeft.GetPosition(), m_frontRight.GetPosition(),
                      m_backLeft.GetPosition(), m_backRight.GetPosition()});
+}
+
+void Drivetrain::DriveStop() {
+    this->Drive(0_mps, 0_mps, 0_rad_per_s, false, 0_s);
+}
+
+void Drivetrain::AutoDriveBackwards() {
+    this->Drive(-0.2_mps, -0.2_mps, 0_rad_per_s, false, 0_s);
+}
+
+void Drivetrain::AutoDriveForwards() {
+    this->Drive(0.2_mps, 0.2_mps, 0_rad_per_s, false, 0_s);
+}
+
+void Drivetrain::AutoRotateLeft() {
+    this->Drive(0.2_mps, 0.2_mps, 0.2_rad_per_s, false, 0_s);
+}
+
+void Drivetrain::AutoRotateRight() {
+    this->Drive(0.2_mps, 0.2_mps, -0.2_rad_per_s, false, 0_s);
 }

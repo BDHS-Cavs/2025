@@ -9,7 +9,7 @@
 #include <frc2/command/SubsystemBase.h>
 
 #include <rev/SparkRelativeEncoder.h>
-#include <ctre/phoenix6/CANcoder.hpp> //#include <ctre/phoenix/sensors/CANCoder.h> - phoenix 5 - dont think we need todo
+#include <ctre/phoenix6/CANcoder.hpp> //#include <ctre/phoenix/sensors/CANCoder.h> - phoenix 5
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
 #include <frc/controller/SimpleMotorFeedforward.h>

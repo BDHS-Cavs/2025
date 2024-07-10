@@ -22,7 +22,6 @@ class Shooter: public frc2::SubsystemBase {
 private:
     rev::CANSparkMax m_shooterMotor1{ShooterConstants::kShooterMotor1Port, rev::CANSparkMax::MotorType::kBrushless};
     rev::CANSparkMax m_shooterMotor2{ShooterConstants::kShooterMotor2Port, rev::CANSparkMax::MotorType::kBrushless};
-    //frc::MotorControllerGroup m_climberMotors{m_shooterMotor1, m_shooterMotor2};//todo delete? or use spark groups
 
 public:
     Shooter();

@@ -20,13 +20,10 @@ Climber::Climber(){
     SetName("Climber");
     SetSubsystem("Climber");
 
-    //AddChild("ClimberMotor1", &m_climberMotor1);//todo
     m_climberMotor1.SetInverted(false);
 
-    //AddChild("ClimberMotor2", &m_climberMotor2);//todo
     m_climberMotor2.SetInverted(true);
 
-    //AddChild("ClimberMotors", &m_climberMotors);//todo
 
     m_climberMotor1.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);
     m_climberMotor2.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);

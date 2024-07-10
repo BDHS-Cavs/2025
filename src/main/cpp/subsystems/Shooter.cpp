@@ -20,10 +20,10 @@ Shooter::Shooter(){
     SetName("Shooter");
     SetSubsystem("Shooter");
 
-    //AddChild("ShooterMotor1", &m_shooterMotor1); //todo
+    //AddChild("ShooterMotor1", &m_shooterMotor1);
     m_shooterMotor1.SetInverted(true);
 
-    //AddChild("ShooterMotor2", &m_shooterMotor2); //todo
+    //AddChild("ShooterMotor2", &m_shooterMotor2);
     m_shooterMotor2.SetInverted(false);
 
     m_shooterMotor1.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);

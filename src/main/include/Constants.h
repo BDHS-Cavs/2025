@@ -77,10 +77,6 @@ namespace ConveyerConstants {
 constexpr int kConveyerMotorPort = 8; //talonsrx
 }
 
-namespace ModuleConstants {
-//todo ???
-}
-
 namespace AutoConstants {
 //auto constants
 extern const frc::TrapezoidProfile<units::radians>::Constraints
