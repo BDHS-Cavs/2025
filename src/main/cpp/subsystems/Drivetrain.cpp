@@ -11,6 +11,7 @@ Drivetrain::Drivetrain(){
 }
 void Drivetrain::Periodic() {
     // Put code here to be run every loop
+    this->UpdateOdometry();
 }
 
 void Drivetrain::SimulationPeriodic() {
