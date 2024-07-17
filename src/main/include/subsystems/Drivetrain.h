@@ -45,10 +45,10 @@ class Drivetrain: public frc2::SubsystemBase {
   frc::ADXRS450_Gyro m_gyro;
   
  private:
-  frc::Translation2d m_frontLeftLocation{+0.381_m, +0.381_m};//TODO find
-  frc::Translation2d m_frontRightLocation{+0.381_m, -0.381_m};
-  frc::Translation2d m_backLeftLocation{-0.381_m, +0.381_m};
-  frc::Translation2d m_backRightLocation{-0.381_m, -0.381_m};
+  frc::Translation2d m_frontLeftLocation{+DriveConstants::kWheelLocations, +DriveConstants::kWheelLocations};
+  frc::Translation2d m_frontRightLocation{+DriveConstants::kWheelLocations, -DriveConstants::kWheelLocations};
+  frc::Translation2d m_backLeftLocation{-DriveConstants::kWheelLocations, +DriveConstants::kWheelLocations};
+  frc::Translation2d m_backRightLocation{-DriveConstants::kWheelLocations, -DriveConstants::kWheelLocations};
 
 /*                         
 int driveMotorChannel
