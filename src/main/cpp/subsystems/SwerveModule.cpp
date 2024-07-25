@@ -52,12 +52,12 @@ frc::SwerveModulePosition SwerveModule::GetPosition() {
 */
 
 frc::SwerveModuleState SwerveModule::GetState() {
-  return {units::meters_per_second_t{m_driveEncoder.GetVelocity()},//TODO RPM TO MPS
+  return {(m_driveEncoder.GetVelocity() / 60) * (std::numbers::pi * DriveConstants::kWheelDiameterMETERS),//rpm to mps
           m_turningEncoder.GetAbsolutePosition().GetValue()}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 }
 
 frc::SwerveModulePosition SwerveModule::GetPosition() {
-  return {{m_driveEncoder.GetPosition() * std::numbers::pi * DriveConstants::kWheelDiameter},
+  return {{m_driveEncoder.GetPosition() * std::numbers::pi * DriveConstants::kWheelDiameterINCHES},//rotations to meters
           m_turningEncoder.GetAbsolutePosition().GetValue()}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 }
 
