@@ -36,35 +36,22 @@ SwerveModule::SwerveModule(int driveMotorChannel,
       -units::radian_t{std::numbers::pi}, units::radian_t{std::numbers::pi});
 }
 
-/*
-OLD//TODO
-
 frc::SwerveModuleState SwerveModule::GetState() {
-  return {units::meters_per_second_t{m_driveEncoder.GetVelocity()},
-          units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}};
-}
+  return {
+    units::turns_per_second_t{m_driveEncoder.GetVelocity() / 60} * (DriveConstants::kWheelDiameter * units::constants::pi / 1_tr), m_turningEncoder.GetAbsolutePosition().GetValue()
+    };
+}//TODO GetPosition or GetAbsolutePosition ??? - he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 
 frc::SwerveModulePosition SwerveModule::GetPosition() {
-  return {units::meter_t{m_driveEncoder.GetPosition()},
-          units::radian_t{m_turningEncoder.GetAbsolutePosition().GetValue()}};
-}
-
-*/
-
-frc::SwerveModuleState SwerveModule::GetState() {
-  return {(m_driveEncoder.GetVelocity() / 60) * (std::numbers::pi * DriveConstants::kWheelDiameterMETERS),//rpm to mps
-          m_turningEncoder.GetAbsolutePosition().GetValue()}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
-}
-
-frc::SwerveModulePosition SwerveModule::GetPosition() {
-  return {{m_driveEncoder.GetPosition() * std::numbers::pi * DriveConstants::kWheelDiameterINCHES},//rotations to meters
-          m_turningEncoder.GetAbsolutePosition().GetValue()}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
-}
+  return {
+    units::turn_t{m_driveEncoder.GetPosition()} * (DriveConstants::kWheelDiameter * units::constants::pi / 1_tr), m_turningEncoder.GetAbsolutePosition().GetValue()
+  };
+}//TODO GetPosition or GetAbsolutePosition ??? - he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 
 void SwerveModule::SetDesiredState(
     const frc::SwerveModuleState& referenceState) {
   frc::Rotation2d encoderRotation{
-      m_turningEncoder.GetAbsolutePosition().GetValue()}; //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
+      m_turningEncoder.GetAbsolutePosition().GetValue()}; //TODO GetPosition or GetAbsolutePosition ??? - he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 
   // Optimize the reference state to avoid spinning further than 90 degrees
   auto state =
@@ -83,7 +70,7 @@ void SwerveModule::SetDesiredState(
 
   // Calculate the turning motor output from the turning PID controller.
   const auto turnOutput = m_turningPIDController.Calculate(
-      m_turningEncoder.GetAbsolutePosition().GetValue(), state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ??? - TODO he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
+      m_turningEncoder.GetAbsolutePosition().GetValue(), state.angle.Radians()); //TODO GetPosition or GetAbsolutePosition ??? - he said to use absolute https://www.reddit.com/r/FRC/comments/x30avg/
 
   const auto turnFeedforward = m_turnFeedforward.Calculate(
       m_turningPIDController.GetSetpoint().velocity);

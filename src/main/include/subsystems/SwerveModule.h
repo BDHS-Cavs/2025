@@ -14,12 +14,16 @@
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/SwerveModuleState.h>
 #include <rev/CANSparkMax.h>
-#include <units/angular_velocity.h>
 #include <units/time.h>
 #include <units/velocity.h>
 #include <units/voltage.h>
 
 #include "Constants.h"
+
+#include <units/length.h>
+#include <units/angle.h>
+#include <units/angular_velocity.h>
+#include <units/constants.h>
 
 class SwerveModule {
  public:
