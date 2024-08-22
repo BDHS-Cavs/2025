@@ -18,6 +18,9 @@ SwerveModule::SwerveModule(int driveMotorChannel,
       m_turningMotor(turningMotorChannel, turningMotorType),
       m_turningEncoder(turningEncoderChannel, turningEncoderCanbus) {
         
+        m_driveMotor.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);
+        m_turningMotor.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);//todo double check with jon
+
   // Set the distance per pulse for the drive encoder. We can simply use the
   // distance traveled for one rotation of the wheel divided by the encoder
   // resolution.

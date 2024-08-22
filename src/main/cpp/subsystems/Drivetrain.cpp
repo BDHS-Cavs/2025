@@ -15,7 +15,7 @@ void Drivetrain::Periodic() {
 }
 
 void Drivetrain::SimulationPeriodic() {
-}
+}//TODO needed?
 void Drivetrain::Drive(units::meters_per_second_t xSpeed,
                        units::meters_per_second_t ySpeed,
                        units::radians_per_second_t rot, bool fieldRelative,
@@ -35,8 +35,6 @@ void Drivetrain::Drive(units::meters_per_second_t xSpeed,
   m_frontRight.SetDesiredState(fr);
   m_backLeft.SetDesiredState(bl);
   m_backRight.SetDesiredState(br);
-
-  //TODO brake or coast mode
 }
 
 void Drivetrain::UpdateOdometry() {
