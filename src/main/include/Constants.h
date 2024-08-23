@@ -56,7 +56,7 @@ constexpr double kturningD = 0.0;
 
 constexpr units::inch_t kWheelDiameter = 4_in;//TODO find
 
-constexpr units::meter_t kWheelLocations = 0.381_m;//TODO find
+constexpr units::meter_t kWheelLocations = 0.17145_m;//TODO find
 
 }
 
