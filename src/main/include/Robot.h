@@ -41,8 +41,8 @@ class Robot : public frc::TimedRobot {
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* m_autonomousCommand = nullptr;
 
-  cs::UsbCamera usbcamera1;
-  cs::UsbCamera usbcamera2;
-
-  cs::VideoSink cameraserver;
+  //cs::UsbCamera usbcamera1;
+  //cs::UsbCamera usbcamera2;
+//
+  //cs::VideoSink cameraserver;
 };

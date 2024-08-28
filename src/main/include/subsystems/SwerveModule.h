@@ -33,7 +33,7 @@ class SwerveModule {
   frc::SwerveModulePosition GetPosition();
   void SetDesiredState(const frc::SwerveModuleState& state);
 
-  rev::SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder();
+  rev::SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder(rev::SparkRelativeEncoder::Type::kQuadrature, 8092);
   ctre::phoenix6::hardware::CANcoder m_turningEncoder;
 
  private:

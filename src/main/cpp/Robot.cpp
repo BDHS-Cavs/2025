@@ -9,13 +9,13 @@
 
 void Robot::RobotInit() {
 
-    usbcamera1 = frc::CameraServer::StartAutomaticCapture(0);
-    usbcamera2 = frc::CameraServer::StartAutomaticCapture(1);
-
-    usbcamera1.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
-    usbcamera2.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
-
-    cameraserver = frc::CameraServer::GetServer();
+    //usbcamera1 = frc::CameraServer::StartAutomaticCapture(0);
+    //usbcamera2 = frc::CameraServer::StartAutomaticCapture(1);
+//
+    //usbcamera1.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
+    //usbcamera2.SetConnectionStrategy(cs::VideoSource::ConnectionStrategy::kConnectionKeepOpen);
+//
+    //cameraserver = frc::CameraServer::GetServer();
 
   m_container->m_swerve.m_gyro.Calibrate();
 }
