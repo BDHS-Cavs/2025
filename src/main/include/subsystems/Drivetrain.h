@@ -14,6 +14,8 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <rev/CANSparkMax.h>
 
+#include <frc/smartdashboard/SmartDashboard.h>
+
 #include "SwerveModule.h"
 
 #include "Constants.h"
@@ -44,6 +46,11 @@ class Drivetrain: public frc2::SubsystemBase {
   
   frc::ADXRS450_Gyro m_gyro;
   
+  SwerveModule m_frontLeft{DriveConstants::kFrontLeftDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontLeftTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontLeftTurningEncoderPort, "rio"};
+  SwerveModule m_frontRight{DriveConstants::kFrontRightDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontRightTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontRightTurningEncoderPort, "rio"};
+  SwerveModule m_backLeft{DriveConstants::kBackLeftDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackLeftTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackLeftTurningEncoderPort, "rio"};
+  SwerveModule m_backRight{DriveConstants::kBackRightDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackRightTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackRightTurningEncoderPort, "rio"};
+
  private:
   frc::Translation2d m_frontLeftLocation{+DriveConstants::kWheelLocations, +DriveConstants::kWheelLocations};
   frc::Translation2d m_frontRightLocation{+DriveConstants::kWheelLocations, -DriveConstants::kWheelLocations};
@@ -59,10 +66,7 @@ int turningEncoderChannel
 std::string turningEncoderCanbus
 */
 
-  SwerveModule m_frontLeft{DriveConstants::kFrontLeftDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontLeftTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontLeftTurningEncoderPort, "rio"};
-  SwerveModule m_frontRight{DriveConstants::kFrontRightDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontRightTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kFrontRightTurningEncoderPort, "rio"};
-  SwerveModule m_backLeft{DriveConstants::kBackLeftDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackLeftTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackLeftTurningEncoderPort, "rio"};
-  SwerveModule m_backRight{DriveConstants::kBackRightDriveMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackRightTurningMotorPort, rev::CANSparkMax::MotorType::kBrushless, DriveConstants::kBackRightTurningEncoderPort, "rio"};
+
 
 
 

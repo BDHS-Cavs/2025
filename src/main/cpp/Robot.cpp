@@ -36,8 +36,8 @@ void Robot::RobotPeriodic() {
     frc::SmartDashboard::PutNumber("gyro get rate", m_container->m_swerve.m_gyro.GetRate());
 
   //climber
-    frc::SmartDashboard::PutNumber("Climber Encoder 1 Position", m_container->m_climber.m_climberEncoder1.GetPosition());
-    frc::SmartDashboard::PutNumber("Climber Encoder 2 Position", m_container->m_climber.m_climberEncoder2.GetPosition());
+    //frc::SmartDashboard::PutNumber("Climber Encoder 1 Position", m_container->m_climber.m_climberEncoder1.GetPosition());
+    //frc::SmartDashboard::PutNumber("Climber Encoder 2 Position", m_container->m_climber.m_climberEncoder2.GetPosition());
   }
 
 /**

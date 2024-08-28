@@ -31,23 +31,23 @@
 
 #include "subsystems/Drivetrain.h"
 #include "subsystems/SwerveModule.h"
-#include "subsystems/Climber.h"
-#include "subsystems/Shooter.h"
-#include "subsystems/Intake.h"
-#include "subsystems/Conveyer.h"
+//#include "subsystems/Climber.h"
+//#include "subsystems/Shooter.h"
+//#include "subsystems/Intake.h"
+//#include "subsystems/Conveyer.h"
 
-#include "commands/ClimberLowerCommand.h"
-#include "commands/ClimberRaiseCommand.h"
-#include "commands/ShooterShootCommand.h"
-#include "commands/ShooterRetractCommand.h"
-#include "commands/IntakeRunCommand.h"
-#include "commands/IntakeExpelCommand.h"
-#include "commands/ConveyerForwardCommand.h"
-#include "commands/ConveyerBackwardCommand.h"
+//#include "commands/ClimberLowerCommand.h"
+//#include "commands/ClimberRaiseCommand.h"
+//#include "commands/ShooterShootCommand.h"
+//#include "commands/ShooterRetractCommand.h"
+//#include "commands/IntakeRunCommand.h"
+//#include "commands/IntakeExpelCommand.h"
+//#include "commands/ConveyerForwardCommand.h"
+//#include "commands/ConveyerBackwardCommand.h"
 
-#include "commands/LeftAuto.h"
-#include "commands/RightAuto.h"
-#include "commands/CenterAuto.h"
+//#include "commands/LeftAuto.h"
+//#include "commands/RightAuto.h"
+//#include "commands/CenterAuto.h"
 
 class RobotContainer {
 
@@ -60,16 +60,18 @@ public:
 
     // The robot's subsystems
     Drivetrain m_swerve;
-    Climber m_climber;
-    Shooter m_shooter;
-    Intake m_intake;
-    Conveyer m_conveyer;
+    //Climber m_climber;
+    //Shooter m_shooter;
+    //Intake m_intake;
+    //Conveyer m_conveyer;
 
     // Get the control values
-    frc::PS4Controller *getJoystick();
+    //frc::PS4Controller *getJoystick();
+    frc::XboxController *getJoystick();
     frc::XboxController *getController();
 
-    frc::PS4Controller m_drivecontroller{OIConstants::kDriveControllerPort};  
+    //frc::PS4Controller m_drivecontroller{OIConstants::kDriveControllerPort};  
+    frc::XboxController m_drivecontroller{OIConstants::kDriveControllerPort};
     frc::XboxController m_controller{OIConstants::kControllerPort};
 
 
@@ -81,9 +83,9 @@ private:
     void ConfigureButtonBindings();
     
     // The autonomous routines
-  LeftAuto m_leftAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
-  RightAuto m_rightAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
-  CenterAuto m_centerAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
+  //LeftAuto m_leftAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
+  //RightAuto m_rightAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
+  //CenterAuto m_centerAuto{&m_swerve, &m_climber, &m_shooter, &m_intake, &m_conveyer};
 
   // The chooser for the autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;

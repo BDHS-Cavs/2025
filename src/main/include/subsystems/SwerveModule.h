@@ -33,6 +33,9 @@ class SwerveModule {
   frc::SwerveModulePosition GetPosition();
   void SetDesiredState(const frc::SwerveModuleState& state);
 
+  rev::SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder();
+  ctre::phoenix6::hardware::CANcoder m_turningEncoder;
+
  private:
   //static constexpr double kWheelRadius = 0.0508;
   //static constexpr int kEncoderResolution = 4096;
@@ -44,9 +47,6 @@ class SwerveModule {
 
   rev::CANSparkMax m_driveMotor;
   rev::CANSparkMax m_turningMotor;
-
-  rev::SparkRelativeEncoder m_driveEncoder = m_driveMotor.GetEncoder();
-  ctre::phoenix6::hardware::CANcoder m_turningEncoder;
 
   frc::PIDController m_drivePIDController{DriveConstants::kdriveP, DriveConstants::kdriveI, DriveConstants::kdriveD};
   frc::ProfiledPIDController<units::radians> m_turningPIDController{

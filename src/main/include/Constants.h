@@ -29,28 +29,28 @@
 
 namespace DriveConstants {
 //driving ports
-constexpr int kFrontLeftDriveMotorPort = 3;                //sm4d
-constexpr int kFrontLeftTurningMotorPort = 4;              //sm4s
+constexpr int kFrontLeftDriveMotorPort = 8;                //sm4d
+constexpr int kFrontLeftTurningMotorPort = 7;              //sm4s
 constexpr int kFrontLeftTurningEncoderPort = 1;            //sm4se
 
-constexpr int kBackLeftDriveMotorPort = 5;                 //sm3d
-constexpr int kBackLeftTurningMotorPort = 6;               //sm3s
+constexpr int kBackLeftDriveMotorPort = 1;                 //sm3d
+constexpr int kBackLeftTurningMotorPort = 2;               //sm3s
 constexpr int kBackLeftTurningEncoderPort = 2;             //sm3se
 
-constexpr int kFrontRightDriveMotorPort = 9;               //sm1d
-constexpr int kFrontRightTurningMotorPort = 10;            //sm1s
+constexpr int kFrontRightDriveMotorPort = 6;               //sm1d
+constexpr int kFrontRightTurningMotorPort = 5;            //sm1s
 constexpr int kFrontRightTurningEncoderPort = 3;           //sm1se
 
-constexpr int kBackRightDriveMotorPort = 7;                //sm2d
-constexpr int kBackRightTurningMotorPort = 2;              //sm2s
+constexpr int kBackRightDriveMotorPort = 4;                //sm2d
+constexpr int kBackRightTurningMotorPort = 3;              //sm2s
 constexpr int kBackRightTurningEncoderPort = 4;            //sm2se
 
 //driving pid
-constexpr double kdriveP = 1.0; //TODO try 5.0
+constexpr double kdriveP = 5.0; //TODO try 5.0
 constexpr double kdriveI = 0.0;
 constexpr double kdriveD = 0.0;
 
-constexpr double kturningP = 1.0; //TODO try 5.0
+constexpr double kturningP = 5.0; //TODO try 5.0
 constexpr double kturningI = 0.0;
 constexpr double kturningD = 0.0;
 
