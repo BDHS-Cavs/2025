@@ -46,17 +46,17 @@ constexpr int kBackRightTurningMotorPort = 3;              //sm2s
 constexpr int kBackRightTurningEncoderPort = 4;            //sm2se
 
 //driving pid
-constexpr double kdriveP = 5.0; //TODO try 5.0
+constexpr double kdriveP = 1.0; //TODO try 5.0
 constexpr double kdriveI = 0.0;
 constexpr double kdriveD = 0.0;
 
-constexpr double kturningP = 5.0; //TODO try 5.0
+constexpr double kturningP = 1.0; //TODO try 5.0
 constexpr double kturningI = 0.0;
 constexpr double kturningD = 0.0;
 
-constexpr units::inch_t kWheelDiameter = 4_in;//TODO find
+constexpr units::inch_t kWheelDiameter = 4_in;
 
-constexpr units::meter_t kWheelLocations = 0.17145_m;//TODO find
+constexpr units::meter_t kWheelLocations = 0.17145_m;
 
 }
 
