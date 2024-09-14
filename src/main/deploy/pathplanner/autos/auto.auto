@@ -1,0 +1,61 @@
+{
+  "version": 1.0,
+  "startingPose": null,
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "shoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 2.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "first"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "pickup"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "second"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "third"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "pickup"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
