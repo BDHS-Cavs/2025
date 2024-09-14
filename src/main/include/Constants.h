@@ -46,11 +46,22 @@ constexpr int kBackRightTurningMotorPort = 3;              //sm2s
 constexpr int kBackRightTurningEncoderPort = 4;            //sm2se
 
 //driving pid
-constexpr double kdriveP = 1.0; //TODO try 5.0
-constexpr double kdriveI = 0.0;
-constexpr double kdriveD = 0.0;
+//constexpr double kdriveP = 1.0; //TODO try 5.0
+//constexpr double kdriveI = 0.0;
+//constexpr double kdriveD = 0.0;
 
-constexpr double kturningP = 1.0; //TODO try 5.0
+//constexpr double kturningP = 1.0; //TODO try 5.0
+//constexpr double kturningI = 0.0;
+//constexpr double kturningD = 0.0;
+
+constexpr double kdriveP = 6e-5;
+constexpr double kdriveI = 1e-6;
+constexpr double kdriveD = 0.0;
+constexpr double kdriveIZone = 0.0;
+constexpr double kdriveFF = 0.000015;
+constexpr double kdriveMaxOutput = 1.0;
+constexpr double kdriveMinOutput = -1.0;
+constexpr double kturningP = 0.0;
 constexpr double kturningI = 0.0;
 constexpr double kturningD = 0.0;
 

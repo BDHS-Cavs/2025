@@ -37,6 +37,15 @@ SwerveModule::SwerveModule(int driveMotorChannel,
   // to be continuous.
   m_turningPIDController.EnableContinuousInput(
       -units::radian_t{std::numbers::pi}, units::radian_t{std::numbers::pi});
+
+      m_driveMotor.RestoreFactoryDefaults();
+
+     m_drivePIDController.SetP(DriveConstants::kdriveP);
+     m_drivePIDController.SetI(DriveConstants::kdriveI);
+     m_drivePIDController.SetD(DriveConstants::kdriveD);
+     m_drivePIDController.SetIZone(DriveConstants::kdriveIZone);
+     m_drivePIDController.SetFF(DriveConstants::kdriveFF);
+     m_drivePIDController.SetOutputRange(DriveConstants::kdriveMinOutput, DriveConstants::kdriveMaxOutput);
 }
 
 frc::SwerveModuleState SwerveModule::GetState() {

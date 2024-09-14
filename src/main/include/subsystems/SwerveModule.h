@@ -7,6 +7,7 @@
 #include <numbers>
 
 #include <rev/SparkRelativeEncoder.h>
+#include <rev/SparkPIDController.h>
 #include <ctre/phoenix6/CANcoder.hpp> //#include <ctre/phoenix/sensors/CANCoder.h> - phoenix 5
 #include <frc/controller/PIDController.h>
 #include <frc/controller/ProfiledPIDController.h>
@@ -48,7 +49,8 @@ class SwerveModule {
   static constexpr auto kModuleMaxAngularAcceleration =
       std::numbers::pi * 2_rad_per_s / 1_s;  // radians per second^2
 
-  frc::PIDController m_drivePIDController{DriveConstants::kdriveP, DriveConstants::kdriveI, DriveConstants::kdriveD};
+  //frc::PIDController m_drivePIDController{DriveConstants::kdriveP, DriveConstants::kdriveI, DriveConstants::kdriveD};
+  rev::SparkPIDController m_drivePIDController = m_driveMotor.GetPIDController();
   frc::ProfiledPIDController<units::radians> m_turningPIDController{
       DriveConstants::kturningP,
       DriveConstants::kturningI,
