@@ -4,7 +4,9 @@
 
 package frc.robot;
 
-import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.config.PIDConstants;
+import com.revrobotics.spark.SparkLowLevel;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
@@ -41,11 +43,17 @@ public final class Constants
     public static final double WHEEL_LOCK_TIME = 10; // seconds
   }
 
+  public static class ShooterConstants
+  {
+    public static final int shooterMotorID = 1;
+    public static final SparkLowLevel.MotorType shooterMotorType = MotorType.kBrushless;
+  }
+
   public static class OperatorConstants
   {
 
     // Joystick Deadband
-    public static final double LEFT_X_DEADBAND  = 0.1;
+    public static final double DEADBAND        = 0.1;
     public static final double LEFT_Y_DEADBAND  = 0.1;
     public static final double RIGHT_X_DEADBAND = 0.1;
     public static final double TURN_CONSTANT    = 6;
