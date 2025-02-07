@@ -5,10 +5,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.studica.frc.AHRS;
+import com.studica.frc.AHRS.NavXComType;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
@@ -24,6 +30,8 @@ public class Robot extends TimedRobot
   private RobotContainer m_robotContainer;
 
   private Timer disabledTimer;
+
+  public AHRS navx = new AHRS(NavXComType.kMXP_SPI);
 
   public Robot()
   {
@@ -70,6 +78,8 @@ public class Robot extends TimedRobot
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    SmartDashboard.putNumber("navx yaw", navx.getYaw());
   }
 
   /**
