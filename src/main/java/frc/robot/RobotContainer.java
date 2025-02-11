@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -13,6 +14,8 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -34,6 +37,8 @@ import swervelib.SwerveInputStream;
  */
 public class RobotContainer
 {
+private final SendableChooser<Command> autoChooser;
+
   public final static frc.robot.subsystems.shooter shooter = new frc.robot.subsystems.shooter();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -122,6 +127,8 @@ public class RobotContainer
    */
   public RobotContainer()
   {
+    autoChooser = AutoBuilder.buildAutoChooser();
+    SmartDashboard.putData("Auto Chooser", autoChooser);
     // Configure the trigger bindings
     configureBindings();
     DriverStation.silenceJoystickConnectionWarning(true);
@@ -157,18 +164,18 @@ public class RobotContainer
       driverXbox.back().whileTrue(drivebase.centerModulesCommand());
       driverXbox.leftBumper().onTrue(Commands.none());
       driverXbox.rightBumper().onTrue(Commands.none());
-    } else
+    } else //if teleop
     {
-      driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
-      driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
+      driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro))); //makes it like drive straight if u were driving backwards
+      driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading)); //TODO not useful
       driverXbox.b().whileTrue(
           drivebase.driveToPose(
-              new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
+              new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))) //drive to a position on the field?
                               );
-      driverXbox.y().whileTrue(drivebase.aimAtSpeaker(2));
+      driverXbox.y().whileTrue(drivebase.aimAtSpeaker(2)); //uses apriltags
       driverXbox.start().whileTrue(Commands.none());
       driverXbox.back().whileTrue(Commands.none());
-      driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
+      driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly()); //makes u not move and makes u hard to push around
       driverXbox.rightBumper().onTrue(Commands.none());
     }
 
@@ -182,8 +189,9 @@ public class RobotContainer
   public Command getAutonomousCommand()
   {
     // An example command will be run in autonomous
-    return drivebase.getAutonomousCommand("New Auto");
-  }
+//    return drivebase.getAutonomousCommand("New Auto");
+return autoChooser.getSelected();
+}
 
   public void setDriveMode()
   {
