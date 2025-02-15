@@ -43,10 +43,10 @@ public final class Constants
     public static final double WHEEL_LOCK_TIME = 10; // seconds
   }
 
-  public static class ShooterConstants
+  public static class GrabberConstants
   {
-    public static final int shooterMotorID = 1;
-    public static final SparkLowLevel.MotorType shooterMotorType = MotorType.kBrushless;
+    public static final double CompressorMin = 80.0;
+    public static final double CompressorMax = 115.0;
   }
 
   public static class OperatorConstants

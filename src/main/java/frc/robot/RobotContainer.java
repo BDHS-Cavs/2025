@@ -22,10 +22,11 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
-import frc.robot.commands.shooter.intake;
 
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
-import frc.robot.subsystems.shooter;
+import frc.robot.subsystems.grabber;
+
+import frc.robot.commands.grabber.grabberOpen;
 
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -39,10 +40,11 @@ public class RobotContainer
 {
 private final SendableChooser<Command> autoChooser;
 
-  public final static frc.robot.subsystems.shooter shooter = new frc.robot.subsystems.shooter();
+  public final static frc.robot.subsystems.grabber grabber = new frc.robot.subsystems.grabber();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
+  final CommandXboxController controller = new CommandXboxController(1);
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
                                                                          "swerve"));
@@ -132,7 +134,14 @@ private final SendableChooser<Command> autoChooser;
     // Configure the trigger bindings
     configureBindings();
     DriverStation.silenceJoystickConnectionWarning(true);
-    NamedCommands.registerCommand("test", Commands.print("I EXIST"));
+
+    NamedCommands.registerCommand("Compressor Enable", Commands.print("TODO enable compressor"));
+    NamedCommands.registerCommand("Arm Up", Commands.print("TODO arm up"));;
+    NamedCommands.registerCommand("Arm Down", Commands.print("TODO arm down"));
+    NamedCommands.registerCommand("Grabber Open", grabber.grabberOpen());
+    NamedCommands.registerCommand("Grabber Close", grabber.grabberClose());
+    NamedCommands.registerCommand("Compressor Enable", grabber.compressorEnable());
+    NamedCommands.registerCommand("Compressor Disable", grabber.compressorDisable());
   }
 
   /**
