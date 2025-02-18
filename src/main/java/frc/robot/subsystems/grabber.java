@@ -15,23 +15,30 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class grabber extends SubsystemBase {
 
-  Compressor m_compressor = new Compressor(PneumaticsModuleType.REVPH);
-  DoubleSolenoid m_latchSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
-  DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
+  SparkMax m_grabberMotor = new SparkMax(GrabberConstants.grabberMotorID, GrabberConstants.grabberMotorType);
+
+  Compressor m_compressor = new Compressor(GrabberConstants.grabberPneumaticsModuleType);
+
+  DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(GrabberConstants.grabberPneumaticsModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidForwardID);
 
   public void compressorEnable(){
-    m_compressor.enableAnalog(GrabberConstants.CompressorMin, GrabberConstants.CompressorMax);
+    m_compressor.enableAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
   }
 
-  public void grabberOpen(){
-    m_latchSolenoid.set(Value.kForward);
+  public void grabberOut(){
+    m_grabberMotor.set(0.5);
   }
 
-  public void grabberClose(){
-    m_latchSolenoid.set(Value.kReverse);
+  public void grabberIn(){
+    m_grabberMotor.set(-0.5);
+  }
+
+  public void grabberStop(){
+    m_grabberMotor.set(0.0);
   }
 
   public void compressorDisable(){
     m_compressor.disable();
   }
+
   }

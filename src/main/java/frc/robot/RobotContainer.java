@@ -25,8 +25,14 @@ import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import frc.robot.subsystems.grabber;
+import frc.robot.subsystems.arm;
 
-import frc.robot.commands.grabber.grabberOpen;
+import frc.robot.commands.grabber.grabberOut;
+import frc.robot.commands.grabber.grabberIn;
+import frc.robot.commands.grabber.compressorEnable;
+import frc.robot.commands.grabber.compressorDisable;
+
+import frc.robot.commands.arm.armUp;
 
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -41,6 +47,7 @@ public class RobotContainer
 private final SendableChooser<Command> autoChooser;
 
   public final static frc.robot.subsystems.grabber grabber = new frc.robot.subsystems.grabber();
+  public final static frc.robot.subsystems.arm arm = new frc.robot.subsystems.arm();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
@@ -136,12 +143,12 @@ private final SendableChooser<Command> autoChooser;
     DriverStation.silenceJoystickConnectionWarning(true);
 
     NamedCommands.registerCommand("Compressor Enable", Commands.print("TODO enable compressor"));
-    NamedCommands.registerCommand("Arm Up", Commands.print("TODO arm up"));;
+    NamedCommands.registerCommand("Arm Up", Commands.print("TODO arm up"));
     NamedCommands.registerCommand("Arm Down", Commands.print("TODO arm down"));
-    NamedCommands.registerCommand("Grabber Open", grabber.grabberOpen());
-    NamedCommands.registerCommand("Grabber Close", grabber.grabberClose());
-    NamedCommands.registerCommand("Compressor Enable", grabber.compressorEnable());
-    NamedCommands.registerCommand("Compressor Disable", grabber.compressorDisable());
+    NamedCommands.registerCommand("Grabber Out", new grabberOut());
+    NamedCommands.registerCommand("Grabber In", new grabberIn());
+    NamedCommands.registerCommand("Compressor Enable", new compressorEnable());
+    NamedCommands.registerCommand("Compressor Disable", new compressorDisable());
   }
 
   /**
@@ -186,6 +193,14 @@ private final SendableChooser<Command> autoChooser;
       driverXbox.back().whileTrue(Commands.none());
       driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly()); //makes u not move and makes u hard to push around
       driverXbox.rightBumper().onTrue(Commands.none());
+
+      //driverXbox.povDown().onTrue(drivebase.rotateToAngle(180));
+
+      controller.a().onTrue(new grabberOut());
+      controller.b().onTrue(new grabberIn());
+      controller.x().onTrue(new compressorEnable());
+      controller.y().onTrue(new compressorDisable());
+      controller.rightBumper().onTrue(new armUp());
     }
 
   }

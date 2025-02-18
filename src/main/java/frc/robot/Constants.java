@@ -10,6 +10,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import swervelib.math.Matter;
 
 /**
@@ -45,8 +46,27 @@ public final class Constants
 
   public static class GrabberConstants
   {
-    public static final double CompressorMin = 80.0;
-    public static final double CompressorMax = 115.0;
+    public static final int grabberMotorID = 1;
+    public static final MotorType grabberMotorType = MotorType.kBrushless;
+
+    public static final double compressorMin = 80.0;
+    public static final double compressorMax = 115.0;
+
+    public static final int wristSolenoidForwardID = 2;
+    public static final int wristSolenoidBackwardsID = 3;
+
+    public static final PneumaticsModuleType grabberPneumaticsModuleType = PneumaticsModuleType.REVPH;
+  }
+
+  public static class ArmConstants
+  {
+    public static final int armMotorID = 2;
+    public static final MotorType armMotorType = MotorType.kBrushless;
+
+    public static final int latchSolenoidForwardID = 0;
+    public static final int latchSolenoidBackwardsID = 1;
+
+    public static final PneumaticsModuleType armPneumaticsModuleType = PneumaticsModuleType.REVPH;
   }
 
   public static class OperatorConstants
