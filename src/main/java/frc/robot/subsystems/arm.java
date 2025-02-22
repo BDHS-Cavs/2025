@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkRelativeEncoder;
+import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,17 +19,30 @@ public class arm extends SubsystemBase {
 
   SparkMax m_armMotor = new SparkMax(ArmConstants.armMotorID, ArmConstants.armMotorType);
 
+  RelativeEncoder m_armRelativeEncoder = m_armMotor.getEncoder();
+
   DoubleSolenoid m_latchSolenoid = new DoubleSolenoid(ArmConstants.armPneumaticsModuleType, ArmConstants.latchSolenoidForwardID, ArmConstants.latchSolenoidBackwardsID);
 
   public void armUp(){
-    //TODO soft limit switch
-    m_latchSolenoid.set(Value.kReverse); //unlock
-    m_armMotor.set(0.5); //raise
+    if(m_armRelativeEncoder.getPosition() > -492) {
+      m_latchSolenoid.set(Value.kReverse); //unlock
+      m_armMotor.set(0.5); //raise 
+    }
+    else {
+      m_latchSolenoid.set(Value.kForward); //lock
+      m_armMotor.set(0.0); //stop 
+    }
   }
 
   public void armDown(){
-    m_latchSolenoid.set(Value.kForward); //lock
-    m_armMotor.set(-0.5); //lower
+    if(m_armRelativeEncoder.getPosition() < 0) {
+      m_latchSolenoid.set(Value.kReverse); //unlock
+      m_armMotor.set(-0.5); //lower
+    }
+    else {
+      m_latchSolenoid.set(Value.kForward); //lock
+      m_armMotor.set(0.0); //stop
+    }
   }
 
   public void armStop(){

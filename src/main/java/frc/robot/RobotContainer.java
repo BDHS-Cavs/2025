@@ -14,6 +14,7 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.drive.RobotDriveBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -26,6 +27,7 @@ import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import frc.robot.subsystems.grabber;
 import frc.robot.subsystems.arm;
+import frc.robot.subsystems.elevator;
 
 import frc.robot.commands.grabber.grabberOut;
 import frc.robot.commands.grabber.grabberIn;
@@ -33,6 +35,10 @@ import frc.robot.commands.grabber.compressorEnable;
 import frc.robot.commands.grabber.compressorDisable;
 
 import frc.robot.commands.arm.armUp;
+import frc.robot.commands.arm.armDown;
+
+import frc.robot.commands.elevator.elevatorDown;
+import frc.robot.commands.elevator.elevatorUp;
 
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -46,8 +52,9 @@ public class RobotContainer
 {
 private final SendableChooser<Command> autoChooser;
 
-  public final static frc.robot.subsystems.grabber grabber = new frc.robot.subsystems.grabber();
-  public final static frc.robot.subsystems.arm arm = new frc.robot.subsystems.arm();
+  public final static grabber grabber = new grabber();
+  public final static arm arm = new arm();
+  public final static elevator elevator = new elevator();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
@@ -142,6 +149,7 @@ private final SendableChooser<Command> autoChooser;
     configureBindings();
     DriverStation.silenceJoystickConnectionWarning(true);
 
+    //General NamedCommands
     NamedCommands.registerCommand("Compressor Enable", Commands.print("TODO enable compressor"));
     NamedCommands.registerCommand("Arm Up", Commands.print("TODO arm up"));
     NamedCommands.registerCommand("Arm Down", Commands.print("TODO arm down"));
@@ -149,6 +157,13 @@ private final SendableChooser<Command> autoChooser;
     NamedCommands.registerCommand("Grabber In", new grabberIn());
     NamedCommands.registerCommand("Compressor Enable", new compressorEnable());
     NamedCommands.registerCommand("Compressor Disable", new compressorDisable());
+    NamedCommands.registerCommand("Elevator Up", new elevatorUp());
+    NamedCommands.registerCommand("Elevator Down", new elevatorDown());//TODO might need to put stops in namedcommands for pathplanner
+
+    //Auto NamedCommands
+    NamedCommands.registerCommand("Left AimAtReef", new RobotContainer().drivebase.aimAtReef(2, 'l'));//TODO does this work lol i had to do robotcontainer() in robotcontainer
+    NamedCommands.registerCommand("Center AimAtReef", new RobotContainer().drivebase.aimAtReef(2, 'c'));//TODO ^
+    NamedCommands.registerCommand("Right AimAtReef", new RobotContainer().drivebase.aimAtReef(2, 'r'));//TODO ^
   }
 
   /**
@@ -201,6 +216,10 @@ private final SendableChooser<Command> autoChooser;
       controller.x().onTrue(new compressorEnable());
       controller.y().onTrue(new compressorDisable());
       controller.rightBumper().onTrue(new armUp());
+      controller.leftBumper().onTrue(new armDown());
+      controller.start().onTrue(new elevatorUp());
+      controller.back().onTrue(new elevatorDown());
+
     }
 
   }

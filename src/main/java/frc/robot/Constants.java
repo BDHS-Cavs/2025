@@ -69,6 +69,12 @@ public final class Constants
     public static final PneumaticsModuleType armPneumaticsModuleType = PneumaticsModuleType.REVPH;
   }
 
+  public static class ElevatorConstants
+  {
+    public static final int elevatorMotorID = 3;
+    public static final MotorType elevatorMotorType = MotorType.kBrushless;
+  }
+
   public static class OperatorConstants
   {
 
