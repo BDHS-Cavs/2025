@@ -10,14 +10,12 @@ import frc.robot.Constants.GrabberConstants;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class grabber extends SubsystemBase {
 
   SparkMax m_grabberMotor = new SparkMax(GrabberConstants.grabberMotorID, GrabberConstants.grabberMotorType);
 
-  Compressor m_compressor = new Compressor(GrabberConstants.grabberPneumaticsModuleType);
+  Compressor m_compressor = new Compressor(GrabberConstants.grabberPneumaticsModuleType);//TODO min max?
 
   DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(GrabberConstants.grabberPneumaticsModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidForwardID);
 
@@ -40,5 +38,5 @@ public class grabber extends SubsystemBase {
   public void compressorDisable(){
     m_compressor.disable();
   }
-
+//2 functions on a buttonpress to chnage the reverse/forward on wrist solenoid
   }
