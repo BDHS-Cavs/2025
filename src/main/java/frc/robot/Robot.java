@@ -31,8 +31,6 @@ public class Robot extends TimedRobot
 
   private Timer disabledTimer;
 
-  public AHRS navx = new AHRS(NavXComType.kMXP_SPI);
-
   public Robot()
   {
     instance = this;
@@ -78,8 +76,6 @@ public class Robot extends TimedRobot
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-
-    SmartDashboard.putNumber("navx yaw", navx.getYaw());
   }
 
   /**

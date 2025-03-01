@@ -33,6 +33,7 @@ import frc.robot.commands.grabber.grabberOut;
 import frc.robot.commands.grabber.grabberIn;
 import frc.robot.commands.grabber.compressorEnable;
 import frc.robot.commands.grabber.compressorDisable;
+import frc.robot.commands.grabber.wristRotate;
 
 import frc.robot.commands.arm.armUp;
 import frc.robot.commands.arm.armDown;
@@ -157,13 +158,14 @@ private final SendableChooser<Command> autoChooser;
     NamedCommands.registerCommand("Grabber In", new grabberIn());
     NamedCommands.registerCommand("Compressor Enable", new compressorEnable());
     NamedCommands.registerCommand("Compressor Disable", new compressorDisable());
+    NamedCommands.registerCommand("Wrist Rotate", new wristRotate());
     NamedCommands.registerCommand("Elevator Up", new elevatorUp());
     NamedCommands.registerCommand("Elevator Down", new elevatorDown());//TODO might need to put stops in namedcommands for pathplanner
 
     //Auto NamedCommands
-    NamedCommands.registerCommand("Left AimAtReef", new RobotContainer().drivebase.aimAtReef(2, 'l'));//TODO does this work lol i had to do robotcontainer() in robotcontainer
-    NamedCommands.registerCommand("Center AimAtReef", new RobotContainer().drivebase.aimAtReef(2, 'c'));//TODO ^
-    NamedCommands.registerCommand("Right AimAtReef", new RobotContainer().drivebase.aimAtReef(2, 'r'));//TODO ^
+    NamedCommands.registerCommand("Left AimAtReef", this.drivebase.aimAtReef(2, 'l'));
+    NamedCommands.registerCommand("Center AimAtReef", this.drivebase.aimAtReef(2, 'c'));
+    NamedCommands.registerCommand("Right AimAtReef", this.drivebase.aimAtReef(2, 'r'));
   }
 
   /**
@@ -215,6 +217,7 @@ private final SendableChooser<Command> autoChooser;
       controller.b().onTrue(new grabberIn());
       controller.x().onTrue(new compressorEnable());
       controller.y().onTrue(new compressorDisable());
+      controller.leftStick().onTrue(new wristRotate());
       controller.rightBumper().onTrue(new armUp());
       controller.leftBumper().onTrue(new armDown());
       controller.start().onTrue(new elevatorUp());
