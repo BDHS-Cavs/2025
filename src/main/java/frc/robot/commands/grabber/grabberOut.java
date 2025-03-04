@@ -1,20 +1,20 @@
 package frc.robot.commands.grabber;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.RobotContainer;
+import frc.robot.subsystems.grabber;
 
 public class grabberOut extends Command{
+    grabber grabber;
     public grabberOut(){
-        addRequirements(RobotContainer.grabber);
+        addRequirements(grabber);
     }
 
     public void execute() {
-        RobotContainer.grabber.grabberOut();
+        grabber.grabberOut();
     }
 
     public void end(boolean interrupted) {
-        RobotContainer.grabber.grabberStop();
+        grabber.grabberStop();
     }
 
 }

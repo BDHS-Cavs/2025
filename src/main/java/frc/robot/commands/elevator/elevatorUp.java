@@ -1,20 +1,20 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.RobotContainer;
+import frc.robot.subsystems.elevator;
 
 public class elevatorUp extends Command{
+    elevator elevator;
     public elevatorUp(){
-        addRequirements(RobotContainer.elevator);
+        addRequirements(elevator);
     }
 
     public void execute() {
-        RobotContainer.elevator.elevatorUp();
+        elevator.elevatorUp();
     }
 
     public void end(boolean interrupted) {
-        RobotContainer.elevator.elevatorStop();
+        elevator.elevatorStop();
     }
 
 }

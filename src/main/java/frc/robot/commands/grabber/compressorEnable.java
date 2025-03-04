@@ -1,16 +1,16 @@
 package frc.robot.commands.grabber;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.RobotContainer;
+import frc.robot.subsystems.grabber;
 
 public class compressorEnable extends Command{
+    grabber grabber;
     public compressorEnable(){
-        addRequirements(RobotContainer.grabber);
+        addRequirements(grabber);
     }
 
     public void execute() {
-        RobotContainer.grabber.compressorEnable();;
+        grabber.compressorEnable();;
     }
 
     public void end(boolean interrupted) {

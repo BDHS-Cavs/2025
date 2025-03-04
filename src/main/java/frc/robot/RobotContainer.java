@@ -30,7 +30,7 @@ import frc.robot.subsystems.arm;
 import frc.robot.subsystems.elevator;
 
 import frc.robot.commands.grabber.grabberOut;
-import frc.robot.commands.grabber.grabberInCommand;
+import frc.robot.commands.grabber.grabberIn;
 import frc.robot.commands.grabber.compressorEnable;
 import frc.robot.commands.grabber.compressorDisable;
 import frc.robot.commands.grabber.wristRotate;
@@ -53,9 +53,9 @@ public class RobotContainer
 {
 private final SendableChooser<Command> autoChooser;
 
-  public final static grabber grabber = new grabber();
-  public final static arm arm = new arm();
-  public final static elevator elevator = new elevator();
+  public final grabber grabber = new grabber();
+  public final arm arm = new arm();
+  public final elevator elevator = new elevator();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
@@ -155,7 +155,7 @@ private final SendableChooser<Command> autoChooser;
     NamedCommands.registerCommand("Arm Up", Commands.print("TODO arm up"));
     NamedCommands.registerCommand("Arm Down", Commands.print("TODO arm down"));
     NamedCommands.registerCommand("Grabber Out", new grabberOut());
-    NamedCommands.registerCommand("Grabber In", new grabberInCommand());
+    NamedCommands.registerCommand("Grabber In", new grabberIn());
     NamedCommands.registerCommand("Compressor Enable", new compressorEnable());
     NamedCommands.registerCommand("Compressor Disable", new compressorDisable());
     NamedCommands.registerCommand("Wrist Rotate", new wristRotate());
@@ -214,7 +214,7 @@ private final SendableChooser<Command> autoChooser;
       //driverXbox.povDown().onTrue(drivebase.rotateToAngle(180));
 
       controller.a().onTrue(new grabberOut());
-      controller.b().onTrue(new grabberInCommand());//todo check these idk if they actually stop - can try renaming the file
+      controller.b().onTrue(new grabberIn());//todo check these idk if they actually stop - can try renaming the file
       controller.x().onTrue(new compressorEnable());
       controller.y().onTrue(new compressorDisable());
       controller.leftStick().onTrue(new wristRotate());

@@ -1,16 +1,16 @@
 package frc.robot.commands.grabber;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.RobotContainer;
+import frc.robot.subsystems.grabber;
 
 public class wristRotate extends Command{
+    grabber grabber;
     public wristRotate(){
-        addRequirements(RobotContainer.grabber);
+        addRequirements(grabber);
     }
 
     public void execute() {
-        RobotContainer.grabber.wristRotate();
+        grabber.wristRotate();
     }
 
     public void end(boolean interrupted) {
