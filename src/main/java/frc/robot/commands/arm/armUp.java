@@ -9,6 +9,10 @@ public class armUp extends Command{
         addRequirements(arm);
     }
 
+    public void initialize() {
+        //nothing
+    }
+
     public void execute() {
         arm.armUp();
     }
@@ -16,5 +20,4 @@ public class armUp extends Command{
     public void end(boolean interrupted) {
         arm.armStop();
     }
-
 }

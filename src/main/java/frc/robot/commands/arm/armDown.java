@@ -9,6 +9,10 @@ public class armDown extends Command{
         addRequirements(arm);
     }
 
+    public void initialize() {
+        //nothing
+    }
+
     public void execute() {
         arm.armDown();
     }
@@ -16,5 +20,4 @@ public class armDown extends Command{
     public void end(boolean interrupted) {
         arm.armStop();
     }
-
 }

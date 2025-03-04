@@ -9,11 +9,15 @@ public class compressorDisable extends Command{
         addRequirements(grabber);
     }
 
+    public void initialize() {
+        //nothing
+    }
+
     public void execute() {
-        grabber.compressorDisable();;
+        grabber.compressorDisable();
     }
 
     public void end(boolean interrupted) {
+        //nothing
     }
-
 }

@@ -9,6 +9,10 @@ public class elevatorDown extends Command{
         addRequirements(elevator);
     }
 
+    public void initialize() {
+        //nothing
+    }
+
     public void execute() {
         elevator.elevatorDown();
     }
@@ -16,5 +20,4 @@ public class elevatorDown extends Command{
     public void end(boolean interrupted) {
         elevator.elevatorStop();
     }
-
 }

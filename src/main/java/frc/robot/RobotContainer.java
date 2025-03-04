@@ -213,15 +213,15 @@ private final SendableChooser<Command> autoChooser;
 
       //driverXbox.povDown().onTrue(drivebase.rotateToAngle(180));
 
-      controller.a().onTrue(new grabberOut());
-      controller.b().onTrue(new grabberIn());//todo check these idk if they actually stop - can try renaming the file
-      controller.x().onTrue(new compressorEnable());
-      controller.y().onTrue(new compressorDisable());
-      controller.leftStick().onTrue(new wristRotate());
-      controller.rightBumper().onTrue(new armUp());
-      controller.leftBumper().onTrue(new armDown());
-      controller.start().onTrue(new elevatorUp());
-      controller.back().onTrue(new elevatorDown());
+      controller.a().whileTrue(new grabberOut());
+      controller.b().whileTrue(new grabberIn());//todo check these idk if they actually stop - can try renaming the file
+      controller.x().whileTrue(new compressorEnable());
+      controller.y().whileTrue(new compressorDisable());
+      controller.leftStick().whileTrue(new wristRotate());
+      controller.rightBumper().whileTrue(new armUp());
+      controller.leftBumper().whileTrue(new armDown());
+      controller.start().whileTrue(new elevatorUp());
+      controller.back().whileTrue(new elevatorDown());
 
     }
 

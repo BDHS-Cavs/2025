@@ -9,6 +9,10 @@ public class grabberOut extends Command{
         addRequirements(grabber);
     }
 
+    public void initialize() {
+        //nothing
+    }
+
     public void execute() {
         grabber.grabberOut();
     }
@@ -16,5 +20,4 @@ public class grabberOut extends Command{
     public void end(boolean interrupted) {
         grabber.grabberStop();
     }
-
 }
