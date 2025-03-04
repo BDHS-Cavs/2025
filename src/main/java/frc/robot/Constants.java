@@ -49,13 +49,11 @@ public final class Constants
     public static final int grabberMotorID = 10; //10 can
     public static final MotorType grabberMotorType = MotorType.kBrushless;
 
-    public static final double compressorMin = 80.0;//TODO used?
+    public static final double compressorMin = 80.0;
     public static final double compressorMax = 115.0;
 
     public static final int wristSolenoidForwardID = 1; //pneumatic hub channel 1 forward
     public static final int wristSolenoidBackwardID = 2; //pneumatic hub channel 2 backward
-
-    public static final PneumaticsModuleType grabberPneumaticsModuleType = PneumaticsModuleType.REVPH;
   }
 
   public static class ArmConstants
@@ -64,14 +62,18 @@ public final class Constants
     public static final int armPivotMotorID = 1; //1 pwm
   }
 
+  public static class PneumaticConstants
+  {
+    public static final int pneumaticHubID = 11; //11 can
+    public static final PneumaticsModuleType pneumaticHubModuleType = PneumaticsModuleType.REVPH;
+  }
+
   public static class ElevatorConstants
   {
     public static final int elevatorMotorID = 9; //9 can
     public static final MotorType elevatorMotorType = MotorType.kBrushless;
 
     public static final int latchSolenoidID = 0; //channel 0, single channel solenoid
-
-    public static final PneumaticsModuleType elevatorPneumaticsModuleType = PneumaticsModuleType.REVPH;
   }
 
   public static class OperatorConstants

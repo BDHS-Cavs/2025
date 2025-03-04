@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.ElevatorConstants;
-
+import frc.robot.Constants.PneumaticConstants;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class elevator extends SubsystemBase {
@@ -19,7 +19,7 @@ public class elevator extends SubsystemBase {
 
   RelativeEncoder m_elevatorRelativeEncoder = m_elevatorMotor.getEncoder();//elevator motor encoder
 
-  Solenoid m_latchSolenoid = new Solenoid(ElevatorConstants.elevatorPneumaticsModuleType, ElevatorConstants.latchSolenoidID);//locks elevator in place
+  Solenoid m_latchSolenoid = new Solenoid(PneumaticConstants.pneumaticHubModuleType, ElevatorConstants.latchSolenoidID);//locks elevator in place
 
   public void elevatorUp(){
     if(m_elevatorRelativeEncoder.getPosition() > -492) { //software limit switch

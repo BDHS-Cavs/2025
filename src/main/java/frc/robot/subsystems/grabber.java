@@ -7,31 +7,40 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.GrabberConstants;
+import frc.robot.Constants.PneumaticConstants;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class grabber extends SubsystemBase {
 
   SparkMax m_grabberMotor = new SparkMax(GrabberConstants.grabberMotorID, GrabberConstants.grabberMotorType);
 
-  Compressor m_compressor = new Compressor(GrabberConstants.grabberPneumaticsModuleType);//TODO min max?
+  PneumaticHub m_pneumaticHub = new PneumaticHub(PneumaticConstants.pneumaticHubID);
 
-  DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(GrabberConstants.grabberPneumaticsModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidForwardID);
+  //Compressor m_compressor = new Compressor(GrabberConstants.grabberPneumaticsModuleType);
+
+  DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(PneumaticConstants.pneumaticHubID, PneumaticConstants.pneumaticHubModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidBackwardID);
 
   int rotatestatus = 0;
 
+  public void periodic() {
+    //SmartDashboard.putNumber("compressor analog voltage", m_compressor.getAnalogVoltage());
+  }
+
   public void compressorEnable(){
-    m_compressor.enableAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
+    //m_compressor.enableAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
+    m_pneumaticHub.enableCompressorAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
   }
 
   public void grabberOut(){
-    m_grabberMotor.set(0.5);
+    m_grabberMotor.set(0.2);
   }
 
   public void grabberIn(){
-    m_grabberMotor.set(-0.5);
+    m_grabberMotor.set(-0.2);
   }
 
   public void grabberStop(){
@@ -39,7 +48,8 @@ public class grabber extends SubsystemBase {
   }
 
   public void compressorDisable(){
-    m_compressor.disable();
+    //m_compressor.disable();
+    m_pneumaticHub.disableCompressor();
   }
 
   public void wristRotate(){

@@ -10,10 +10,11 @@ public class grabberOut extends Command{
     }
 
     public void execute() {
-        RobotContainer.grabber.grabberOut();;
+        RobotContainer.grabber.grabberOut();
     }
 
     public void end(boolean interrupted) {
+        RobotContainer.grabber.grabberStop();
     }
 
 }
