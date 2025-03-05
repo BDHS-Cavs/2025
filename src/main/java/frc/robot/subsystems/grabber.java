@@ -9,7 +9,6 @@ import frc.robot.RobotContainer;
 import frc.robot.Constants.GrabberConstants;
 import frc.robot.Constants.PneumaticConstants;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -18,21 +17,18 @@ public class grabber extends SubsystemBase {
 
   SparkMax m_grabberMotor = new SparkMax(GrabberConstants.grabberMotorID, GrabberConstants.grabberMotorType);
 
-  //PneumaticHub m_pneumaticHub = new PneumaticHub(PneumaticConstants.pneumaticHubID);
-
-  //Compressor m_compressor = new Compressor(GrabberConstants.grabberPneumaticsModuleType);
+  PneumaticHub m_pneumaticHub = new PneumaticHub(PneumaticConstants.pneumaticHubID);
 
   DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(PneumaticConstants.pneumaticHubID, PneumaticConstants.pneumaticHubModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidBackwardID);
 
   int rotatestatus = 0;
 
   public void periodic() {
-    //SmartDashboard.putNumber("compressor analog voltage", m_compressor.getAnalogVoltage());
+    SmartDashboard.putNumber("compressor analog voltage", m_pneumaticHub.getCompressorCurrent());
   }
 
   public void compressorEnable(){
-    //m_compressor.enableAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
-    //m_pneumaticHub.enableCompressorAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
+    m_pneumaticHub.enableCompressorAnalog(PneumaticConstants.compressorMin, PneumaticConstants.compressorMax);
   }
 
   public void grabberOut(){
@@ -48,8 +44,7 @@ public class grabber extends SubsystemBase {
   }
 
   public void compressorDisable(){
-    //m_compressor.disable();
-    //m_pneumaticHub.disableCompressor();
+    m_pneumaticHub.disableCompressor();
   }
 
   public void wristRotate(){
