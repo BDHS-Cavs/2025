@@ -18,7 +18,7 @@ public class grabber extends SubsystemBase {
 
   SparkMax m_grabberMotor = new SparkMax(GrabberConstants.grabberMotorID, GrabberConstants.grabberMotorType);
 
-  PneumaticHub m_pneumaticHub = new PneumaticHub(PneumaticConstants.pneumaticHubID);
+  //PneumaticHub m_pneumaticHub = new PneumaticHub(PneumaticConstants.pneumaticHubID);
 
   //Compressor m_compressor = new Compressor(GrabberConstants.grabberPneumaticsModuleType);
 
@@ -32,7 +32,7 @@ public class grabber extends SubsystemBase {
 
   public void compressorEnable(){
     //m_compressor.enableAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
-    m_pneumaticHub.enableCompressorAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
+    //m_pneumaticHub.enableCompressorAnalog(GrabberConstants.compressorMin, GrabberConstants.compressorMax);
   }
 
   public void grabberOut(){
@@ -49,7 +49,7 @@ public class grabber extends SubsystemBase {
 
   public void compressorDisable(){
     //m_compressor.disable();
-    m_pneumaticHub.disableCompressor();
+    //m_pneumaticHub.disableCompressor();
   }
 
   public void wristRotate(){

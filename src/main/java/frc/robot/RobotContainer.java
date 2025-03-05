@@ -151,9 +151,8 @@ private final SendableChooser<Command> autoChooser;
     DriverStation.silenceJoystickConnectionWarning(true);
 
     //General NamedCommands
-    NamedCommands.registerCommand("Compressor Enable", Commands.print("TODO enable compressor"));
-    NamedCommands.registerCommand("Arm Up", Commands.print("TODO arm up"));
-    NamedCommands.registerCommand("Arm Down", Commands.print("TODO arm down"));
+    NamedCommands.registerCommand("Arm Up", new armUp());
+    NamedCommands.registerCommand("Arm Down", new armDown());
     NamedCommands.registerCommand("Grabber Out", new grabberOut());
     NamedCommands.registerCommand("Grabber In", new grabberInCommand());
     NamedCommands.registerCommand("Compressor Enable", new compressorEnable());
@@ -213,15 +212,15 @@ private final SendableChooser<Command> autoChooser;
 
       //driverXbox.povDown().onTrue(drivebase.rotateToAngle(180));
 
-      controller.a().onTrue(new grabberOut());
-      controller.b().onTrue(new grabberInCommand());//todo check these idk if they actually stop - can try renaming the file
-      controller.x().onTrue(new compressorEnable());
-      controller.y().onTrue(new compressorDisable());
-      controller.leftStick().onTrue(new wristRotate());
-      controller.rightBumper().onTrue(new armUp());
-      controller.leftBumper().onTrue(new armDown());
-      controller.start().onTrue(new elevatorUp());
-      controller.back().onTrue(new elevatorDown());
+      controller.a().whileTrue(new grabberOut());
+      controller.b().whileTrue(new grabberInCommand());//todo check these idk if they actually stop - can try renaming the file
+      controller.x().whileTrue(new compressorEnable());
+      controller.y().whileTrue(new compressorDisable());
+      controller.povUp().onTrue(new wristRotate()); //ontrue
+      controller.rightBumper().whileTrue(new armUp());
+      controller.leftBumper().whileTrue(new armDown());
+      controller.start().whileTrue(new elevatorUp());
+      controller.back().whileTrue(new elevatorDown());
 
     }
 

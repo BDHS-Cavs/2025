@@ -10,7 +10,7 @@ public class compressorDisable extends Command{
     }
 
     public void execute() {
-        RobotContainer.grabber.compressorDisable();;
+        RobotContainer.grabber.compressorDisable();
     }
 
     public void end(boolean interrupted) {
