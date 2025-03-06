@@ -21,8 +21,6 @@ public class grabber extends SubsystemBase {
 
   DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(PneumaticConstants.pneumaticHubID, PneumaticConstants.pneumaticHubModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidBackwardID);
 
-  int rotatestatus = 0;
-
   public void periodic() {
     SmartDashboard.putNumber("compressor analog voltage", m_pneumaticHub.getCompressorCurrent());
   }
@@ -32,11 +30,11 @@ public class grabber extends SubsystemBase {
   }
 
   public void grabberOut(){
-    m_grabberMotor.set(0.2);
+    m_grabberMotor.set(1.0);
   }
 
   public void grabberIn(){
-    m_grabberMotor.set(-0.2);
+    m_grabberMotor.set(-0.5);
   }
 
   public void grabberStop(){
@@ -48,12 +46,10 @@ public class grabber extends SubsystemBase {
   }
 
   public void wristRotate(){
-    if (rotatestatus == 0) {
-      m_wristSolenoid.set(Value.kForward);
-      rotatestatus = 1;
-    } else if(rotatestatus == 1) {
-      m_wristSolenoid.set(Value.kReverse);
-      rotatestatus = 0;
-    }
+    m_wristSolenoid.set(Value.kForward);
+  }
+
+  public void wristRotateOther(){
+    m_wristSolenoid.set(Value.kReverse);
   }
   }

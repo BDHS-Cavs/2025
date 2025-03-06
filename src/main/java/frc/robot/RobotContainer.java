@@ -34,9 +34,12 @@ import frc.robot.commands.grabber.grabberInCommand;
 import frc.robot.commands.grabber.compressorEnable;
 import frc.robot.commands.grabber.compressorDisable;
 import frc.robot.commands.grabber.wristRotate;
+import frc.robot.commands.grabber.wristRotateOther;
 
 import frc.robot.commands.arm.armUp;
 import frc.robot.commands.arm.armDown;
+import frc.robot.commands.arm.armExtend;
+import frc.robot.commands.arm.armRetract;
 
 import frc.robot.commands.elevator.elevatorDown;
 import frc.robot.commands.elevator.elevatorUp;
@@ -213,10 +216,13 @@ private final SendableChooser<Command> autoChooser;
       //driverXbox.povDown().onTrue(drivebase.rotateToAngle(180));
 
       controller.a().whileTrue(new grabberOut());
-      controller.b().whileTrue(new grabberInCommand());//todo check these idk if they actually stop - can try renaming the file
+      controller.b().whileTrue(new grabberInCommand());
       controller.x().whileTrue(new compressorEnable());
       controller.y().whileTrue(new compressorDisable());
       controller.povUp().onTrue(new wristRotate()); //ontrue
+      controller.povDown().onTrue(new wristRotateOther());
+      controller.povLeft().whileTrue(new armExtend());
+      controller.povRight().whileTrue(new armRetract());
       controller.rightBumper().whileTrue(new armUp());
       controller.leftBumper().whileTrue(new armDown());
       controller.start().whileTrue(new elevatorUp());

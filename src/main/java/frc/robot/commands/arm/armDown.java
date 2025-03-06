@@ -14,7 +14,7 @@ public class armDown extends Command{
     }
 
     public void end(boolean interrupted) {
-        RobotContainer.arm.armStop();
+        RobotContainer.arm.armPivotStop();
     }
 
 }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.ElevatorConstants;
 import frc.robot.Constants.PneumaticConstants;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class elevator extends SubsystemBase {
@@ -19,12 +20,16 @@ public class elevator extends SubsystemBase {
 
   RelativeEncoder m_elevatorRelativeEncoder = m_elevatorMotor.getEncoder();//elevator motor encoder
 
-  Solenoid m_latchSolenoid = new Solenoid(PneumaticConstants.pneumaticHubModuleType, ElevatorConstants.latchSolenoidID);//locks elevator in place
+  Solenoid m_latchSolenoid = new Solenoid(PneumaticConstants.pneumaticHubID, PneumaticConstants.pneumaticHubModuleType, ElevatorConstants.latchSolenoidID);//locks elevator in place
+
+  public void periodic(){
+    SmartDashboard.putNumber("Elevator Encoder", m_elevatorRelativeEncoder.getPosition());
+  }
 
   public void elevatorUp(){
-    if(m_elevatorRelativeEncoder.getPosition() > -492) { //software limit switch
-      m_latchSolenoid.set(false); //unlock
-      m_elevatorMotor.set(0.5); //run motor
+    if(m_elevatorRelativeEncoder.getPosition() > -577) { //software limit switch
+      m_latchSolenoid.set(true); //unlock
+      m_elevatorMotor.set(-0.5); //run motor //UP IS NEGATIVE DOWN IS POSITIVE
       }
     else {
       m_latchSolenoid.set(true); //lock
@@ -34,8 +39,8 @@ public class elevator extends SubsystemBase {
 
   public void elevatorDown(){
     if(m_elevatorRelativeEncoder.getPosition() < 0) { //software limit switch
-      m_latchSolenoid.set(false); //unlock
-      m_elevatorMotor.set(-0.5); //run motor
+      m_latchSolenoid.set(true); //unlock
+      m_elevatorMotor.set(0.5); //run motor //UP IS NEGATIVE DOWN IS POSITIVE
       }
     else {
       m_latchSolenoid.set(true); //lock

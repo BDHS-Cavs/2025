@@ -21,8 +21,20 @@ public class arm extends SubsystemBase {
       m_armPivotMotor.set(-0.1); //lower
   }
 
-  public void armStop(){
+  public void armPivotStop(){
     m_armPivotMotor.set(0.0); //stop
+  }
+
+  public void armExtend(){
+    m_armExtensionMotor.set(0.1); //raise 
+  }
+
+  public void armRetract(){
+    m_armExtensionMotor.set(-0.1); //lower
+  }
+
+  public void armExtensionStop(){
+    m_armExtensionMotor.set(0.0); //stop
   }
 
   }
