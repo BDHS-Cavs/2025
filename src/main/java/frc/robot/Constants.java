@@ -55,8 +55,9 @@ public final class Constants
 
   public static class ArmConstants
   {
-    public static final int armExtensionMotorID = 0; //0 pwm
-    public static final int armPivotMotorID = 1; //1 pwm
+    public static final int armExtensionMotorID = 13; //13 can
+    public static final int armPivotMotorID = 12; //12 can
+    public static final MotorType armMotorType = MotorType.kBrushed;
   }
 
   public static class PneumaticConstants

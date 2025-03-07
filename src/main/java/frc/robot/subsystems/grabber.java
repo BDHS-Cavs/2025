@@ -21,7 +21,10 @@ public class grabber extends SubsystemBase {
 
   DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(PneumaticConstants.pneumaticHubID, PneumaticConstants.pneumaticHubModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidBackwardID);
 
-  public void periodic() {
+  public grabber(){ //init
+  }
+
+  public void periodic() { //periodic
     SmartDashboard.putNumber("compressor analog voltage", m_pneumaticHub.getCompressorCurrent());
   }
 

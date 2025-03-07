@@ -22,7 +22,10 @@ public class elevator extends SubsystemBase {
 
   Solenoid m_latchSolenoid = new Solenoid(PneumaticConstants.pneumaticHubID, PneumaticConstants.pneumaticHubModuleType, ElevatorConstants.latchSolenoidID);//locks elevator in place
 
-  public void periodic(){
+  public elevator(){ //init
+  }
+
+  public void periodic(){ //periodic
     SmartDashboard.putNumber("Elevator Encoder", m_elevatorRelativeEncoder.getPosition());
   }
 

@@ -2,30 +2,29 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.revrobotics.spark.SparkMax;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.ArmConstants;
 
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
-
 public class arm extends SubsystemBase {
 
-  Spark m_armExtensionMotor = new Spark(ArmConstants.armExtensionMotorID); //pivot motor
-  Spark m_armPivotMotor = new Spark(ArmConstants.armPivotMotorID); //extension motor
+  SparkMax m_armExtensionMotor = new SparkMax(ArmConstants.armExtensionMotorID, ArmConstants.armMotorType); //pivot motor
+  SparkMax m_armPivotMotor = new SparkMax(ArmConstants.armPivotMotorID,ArmConstants.armMotorType); //extension motor
 
-//TODO set motor to brake?
+//TODO set motor to brake? -- with sparkmax i think rev hardware client does it
 
-  public void periodic(){
-    SmartDashboard.putNumber("Spark 0 Voltage", m_armExtensionMotor.getVoltage());
-    SmartDashboard.putNumber("Spark 1 Voltage", m_armPivotMotor.getVoltage());
-    SmartDashboard.putString("Spark 0 Description", m_armExtensionMotor.getDescription());
-    SmartDashboard.putString("Spark 1 Description", m_armPivotMotor.getDescription());
+  public arm(){ //init
   }
+
+  public void periodic(){ //periodic
+  }
+
   public void armUp(){
-      m_armPivotMotor.set(0.1); //raise 
+      m_armPivotMotor.set(1.0); //raise 
   }
 
   public void armDown(){
-      m_armPivotMotor.set(-0.1); //lower
+      m_armPivotMotor.set(-1.0); //lower
   }
 
   public void armPivotStop(){
@@ -33,11 +32,11 @@ public class arm extends SubsystemBase {
   }
 
   public void armExtend(){
-    m_armExtensionMotor.set(0.1); //raise 
+    m_armExtensionMotor.set(1.0); //raise 
   }
 
   public void armRetract(){
-    m_armExtensionMotor.set(-0.1); //lower
+    m_armExtensionMotor.set(-1.0); //lower
   }
 
   public void armExtensionStop(){
