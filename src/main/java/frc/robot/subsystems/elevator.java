@@ -32,7 +32,7 @@ public class elevator extends SubsystemBase {
       m_elevatorMotor.set(-0.5); //run motor //UP IS NEGATIVE DOWN IS POSITIVE
       }
     else {
-      m_latchSolenoid.set(true); //lock
+      m_latchSolenoid.set(false); //lock
       m_elevatorMotor.set(0.0); //stop
     }
   }
@@ -43,7 +43,7 @@ public class elevator extends SubsystemBase {
       m_elevatorMotor.set(0.5); //run motor //UP IS NEGATIVE DOWN IS POSITIVE
       }
     else {
-      m_latchSolenoid.set(true); //lock
+      m_latchSolenoid.set(false); //lock
       m_elevatorMotor.set(0.0); //stop
     }
   }

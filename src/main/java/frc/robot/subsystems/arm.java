@@ -12,7 +12,14 @@ public class arm extends SubsystemBase {
   Spark m_armExtensionMotor = new Spark(ArmConstants.armExtensionMotorID); //pivot motor
   Spark m_armPivotMotor = new Spark(ArmConstants.armPivotMotorID); //extension motor
 
-//set motor to brake
+//TODO set motor to brake?
+
+  public void periodic(){
+    SmartDashboard.putNumber("Spark 0 Voltage", m_armExtensionMotor.getVoltage());
+    SmartDashboard.putNumber("Spark 1 Voltage", m_armPivotMotor.getVoltage());
+    SmartDashboard.putString("Spark 0 Description", m_armExtensionMotor.getDescription());
+    SmartDashboard.putString("Spark 1 Description", m_armPivotMotor.getDescription());
+  }
   public void armUp(){
       m_armPivotMotor.set(0.1); //raise 
   }

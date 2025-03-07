@@ -30,7 +30,8 @@ import frc.robot.subsystems.arm;
 import frc.robot.subsystems.elevator;
 
 import frc.robot.commands.grabber.grabberOut;
-import frc.robot.commands.grabber.grabberInCommand;
+import frc.robot.commands.grabber.grabberIn;
+import frc.robot.commands.grabber.grabberStop;
 import frc.robot.commands.grabber.compressorEnable;
 import frc.robot.commands.grabber.compressorDisable;
 import frc.robot.commands.grabber.wristRotate;
@@ -40,9 +41,12 @@ import frc.robot.commands.arm.armUp;
 import frc.robot.commands.arm.armDown;
 import frc.robot.commands.arm.armExtend;
 import frc.robot.commands.arm.armRetract;
+import frc.robot.commands.arm.armPivotStop;
+import frc.robot.commands.arm.armExtensionStop;
 
 import frc.robot.commands.elevator.elevatorDown;
 import frc.robot.commands.elevator.elevatorUp;
+import frc.robot.commands.elevator.elevatorStop;
 
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -156,13 +160,19 @@ private final SendableChooser<Command> autoChooser;
     //General NamedCommands
     NamedCommands.registerCommand("Arm Up", new armUp());
     NamedCommands.registerCommand("Arm Down", new armDown());
+    NamedCommands.registerCommand("Arm Pivot Stop", new armPivotStop());
+    NamedCommands.registerCommand("Arm Extend", new armExtend());
+    NamedCommands.registerCommand("Arm Retract", new armRetract());
+    NamedCommands.registerCommand("Arm Extension Stop", new armExtensionStop());
     NamedCommands.registerCommand("Grabber Out", new grabberOut());
-    NamedCommands.registerCommand("Grabber In", new grabberInCommand());
+    NamedCommands.registerCommand("Grabber In", new grabberIn());
+    NamedCommands.registerCommand("Grabber Stop", new grabberStop());    
     NamedCommands.registerCommand("Compressor Enable", new compressorEnable());
     NamedCommands.registerCommand("Compressor Disable", new compressorDisable());
     NamedCommands.registerCommand("Wrist Rotate", new wristRotate());
     NamedCommands.registerCommand("Elevator Up", new elevatorUp());
-    NamedCommands.registerCommand("Elevator Down", new elevatorDown());//TODO might need to put stops in namedcommands for pathplanner
+    NamedCommands.registerCommand("Elevator Down", new elevatorDown());
+    NamedCommands.registerCommand("Elevator Stop", new elevatorStop());
 
     //Auto NamedCommands
     NamedCommands.registerCommand("Left AimAtReef", this.drivebase.aimAtReef(2, 'l'));
@@ -213,20 +223,18 @@ private final SendableChooser<Command> autoChooser;
       driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly()); //makes u not move and makes u hard to push around
       driverXbox.rightBumper().onTrue(Commands.none());
 
-      //driverXbox.povDown().onTrue(drivebase.rotateToAngle(180));
-
-      controller.a().whileTrue(new grabberOut());
-      controller.b().whileTrue(new grabberInCommand());
-      controller.x().whileTrue(new compressorEnable());
-      controller.y().whileTrue(new compressorDisable());
-      controller.povUp().onTrue(new wristRotate()); //ontrue
-      controller.povDown().onTrue(new wristRotateOther());
-      controller.povLeft().whileTrue(new armExtend());
-      controller.povRight().whileTrue(new armRetract());
-      controller.rightBumper().whileTrue(new armUp());
-      controller.leftBumper().whileTrue(new armDown());
-      controller.start().whileTrue(new elevatorUp());
-      controller.back().whileTrue(new elevatorDown());
+      controller.a().whileTrue(new grabberOut());                     //            A   =   Grabber Out
+      controller.b().whileTrue(new grabberIn());                      //            B   =   Grabber In
+      controller.x().whileTrue(new compressorEnable());               //            X   =   Enable Compressor
+      controller.y().whileTrue(new compressorDisable());              //            Y   =   Disable Compressor
+      controller.povUp().onTrue(new wristRotate()); // ontrue         //     D Pad Up   =   Rotate Wrist
+      controller.povDown().onTrue(new wristRotateOther()); // ontrue  //   D Pad Down   =   Rotate Wrist (Other Way)
+      controller.povLeft().whileTrue(new armExtend());                //   D Pad Left   =   Extend Arm
+      controller.povRight().whileTrue(new armRetract());              //  D Pad Right   =   Retract Arm
+      controller.rightBumper().whileTrue(new armUp());                // Right Bumper   =   Arm Up
+      controller.leftBumper().whileTrue(new armDown());               //  Left Bumper   =   Arm Down
+      controller.start().whileTrue(new elevatorUp());                 //        Start   =   Elevator Up
+      controller.back().whileTrue(new elevatorDown());                //         Back   =   Elevator Down
 
     }
 

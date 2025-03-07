@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 
-public class grabberInCommand extends Command{
-    public grabberInCommand(){
+public class grabberIn extends Command{
+    public grabberIn(){
         addRequirements(RobotContainer.grabber);
     }
 
