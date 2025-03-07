@@ -52,4 +52,8 @@ public class elevator extends SubsystemBase {
     m_elevatorMotor.set(0.0); //stop
   }
 
+  public void elevatorEncoderReset(){
+    m_elevatorRelativeEncoder.setPosition(0); //reset
+  }
+
   }

@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
@@ -45,6 +46,7 @@ import frc.robot.commands.arm.armPivotStop;
 import frc.robot.commands.arm.armExtensionStop;
 
 import frc.robot.commands.elevator.elevatorDown;
+import frc.robot.commands.elevator.elevatorEncoderReset;
 import frc.robot.commands.elevator.elevatorUp;
 import frc.robot.commands.elevator.elevatorStop;
 
@@ -65,7 +67,7 @@ private final SendableChooser<Command> autoChooser;
   public final static elevator elevator = new elevator();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  final CommandXboxController driverXbox = new CommandXboxController(0);
+  final CommandPS5Controller driverXbox = new CommandPS5Controller(0);
   final CommandXboxController controller = new CommandXboxController(1);
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
@@ -84,10 +86,10 @@ private final SendableChooser<Command> autoChooser;
                                                                                                OperatorConstants.DEADBAND),
                                                                  () -> -MathUtil.applyDeadband(driverXbox.getRightX(),
                                                                                                OperatorConstants.RIGHT_X_DEADBAND),
-                                                                 driverXbox.getHID()::getYButtonPressed,
-                                                                 driverXbox.getHID()::getAButtonPressed,
-                                                                 driverXbox.getHID()::getXButtonPressed,
-                                                                 driverXbox.getHID()::getBButtonPressed);
+                                                                 driverXbox.getHID()::getTriangleButtonPressed,
+                                                                 driverXbox.getHID()::getCrossButtonPressed,
+                                                                 driverXbox.getHID()::getSquareButtonPressed,
+                                                                 driverXbox.getHID()::getCircleButtonPressed);
 
   /**
    * Converts driver input into a field-relative ChassisSpeeds that is controlled by angular velocity.
@@ -196,32 +198,32 @@ private final SendableChooser<Command> autoChooser;
 
     if (Robot.isSimulation())
     {
-      driverXbox.start().onTrue(Commands.runOnce(() -> drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
+      driverXbox.options().onTrue(Commands.runOnce(() -> drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
     }
     if (DriverStation.isTest())
     {
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity); // Overrides drive command above!
 
-      driverXbox.b().whileTrue(drivebase.sysIdDriveMotorCommand());
-      driverXbox.x().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
-      driverXbox.y().whileTrue(drivebase.driveToDistanceCommand(1.0, 0.2));
-      driverXbox.start().onTrue((Commands.runOnce(drivebase::zeroGyro)));
-      driverXbox.back().whileTrue(drivebase.centerModulesCommand());
-      driverXbox.leftBumper().onTrue(Commands.none());
-      driverXbox.rightBumper().onTrue(Commands.none());
+      driverXbox.circle().whileTrue(drivebase.sysIdDriveMotorCommand());
+      driverXbox.square().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
+      driverXbox.triangle().whileTrue(drivebase.driveToDistanceCommand(1.0, 0.2));
+      driverXbox.options().onTrue((Commands.runOnce(drivebase::zeroGyro)));
+      driverXbox.povUp().whileTrue(drivebase.centerModulesCommand());
+      driverXbox.L1().onTrue(Commands.none());
+      driverXbox.R1().onTrue(Commands.none());
     } else //if teleop
     {
-      driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro))); //makes it like drive straight if u were driving backwards
-      driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading)); //TODO not useful
-      driverXbox.b().whileTrue(
+      driverXbox.cross().onTrue((Commands.runOnce(drivebase::zeroGyro))); //makes it like drive straight if u were driving backwards
+      driverXbox.square().onTrue(Commands.runOnce(drivebase::addFakeVisionReading)); //TODO not useful
+      driverXbox.circle().whileTrue(
           drivebase.driveToPose(
               new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))) //drive to a position on the field?
                               );
-      driverXbox.y().whileTrue(drivebase.aimAtSpeaker(2)); //uses apriltags
-      driverXbox.start().whileTrue(Commands.none());
-      driverXbox.back().whileTrue(Commands.none());
-      driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly()); //makes u not move and makes u hard to push around
-      driverXbox.rightBumper().onTrue(Commands.none());
+      driverXbox.triangle().whileTrue(drivebase.aimAtSpeaker(2)); //uses apriltags
+      driverXbox.options().whileTrue(Commands.none());
+      driverXbox.povUp().whileTrue(Commands.none());
+      driverXbox.L1().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly()); //makes u not move and makes u hard to push around
+      driverXbox.R1().onTrue(Commands.none());
 
       controller.a().whileTrue(new grabberOut());                     //            A   =   Grabber Out
       controller.b().whileTrue(new grabberIn());                      //            B   =   Grabber In
@@ -235,6 +237,8 @@ private final SendableChooser<Command> autoChooser;
       controller.leftBumper().whileTrue(new armDown());               //  Left Bumper   =   Arm Down
       controller.start().whileTrue(new elevatorUp());                 //        Start   =   Elevator Up
       controller.back().whileTrue(new elevatorDown());                //         Back   =   Elevator Down
+      
+      controller.leftTrigger().onTrue(new elevatorEncoderReset());    // Left Trigger   =   Elevator Encoder Reset   //ontrue   //TODO remove?
 
     }
 
