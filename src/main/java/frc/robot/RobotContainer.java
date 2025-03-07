@@ -34,7 +34,6 @@ import frc.robot.commands.grabber.grabberOut;
 import frc.robot.commands.grabber.grabberIn;
 import frc.robot.commands.grabber.grabberStop;
 import frc.robot.commands.grabber.compressorEnable;
-import frc.robot.commands.grabber.compressorDisable;
 import frc.robot.commands.grabber.wristRotate;
 import frc.robot.commands.grabber.wristRotateOther;
 
@@ -170,7 +169,6 @@ private final SendableChooser<Command> autoChooser;
     NamedCommands.registerCommand("Grabber In", new grabberIn());
     NamedCommands.registerCommand("Grabber Stop", new grabberStop());    
     NamedCommands.registerCommand("Compressor Enable", new compressorEnable());
-    NamedCommands.registerCommand("Compressor Disable", new compressorDisable());
     NamedCommands.registerCommand("Wrist Rotate", new wristRotate());
     NamedCommands.registerCommand("Elevator Up", new elevatorUp());
     NamedCommands.registerCommand("Elevator Down", new elevatorDown());
@@ -228,7 +226,6 @@ private final SendableChooser<Command> autoChooser;
       controller.a().whileTrue(new grabberOut());                     //            A   =   Grabber Out
       controller.b().whileTrue(new grabberIn());                      //            B   =   Grabber In
       controller.x().whileTrue(new compressorEnable());               //            X   =   Enable Compressor
-      controller.y().whileTrue(new compressorDisable());              //            Y   =   Disable Compressor
       controller.povUp().onTrue(new wristRotate()); // ontrue         //     D Pad Up   =   Rotate Wrist
       controller.povDown().onTrue(new wristRotateOther()); // ontrue  //   D Pad Down   =   Rotate Wrist (Other Way)
       controller.povLeft().whileTrue(new armExtend());                //   D Pad Left   =   Extend Arm
@@ -237,7 +234,7 @@ private final SendableChooser<Command> autoChooser;
       controller.leftBumper().whileTrue(new armDown());               //  Left Bumper   =   Arm Down
       controller.start().whileTrue(new elevatorUp());                 //        Start   =   Elevator Up
       controller.back().whileTrue(new elevatorDown());                //         Back   =   Elevator Down
-      
+
       controller.leftTrigger().onTrue(new elevatorEncoderReset());    // Left Trigger   =   Elevator Encoder Reset   //ontrue   //TODO remove?
 
     }
