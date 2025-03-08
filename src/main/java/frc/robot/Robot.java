@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -17,6 +18,8 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSink;
 import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
@@ -33,11 +36,19 @@ public class Robot extends TimedRobot
 
   private Timer disabledTimer;
 
+  UsbCamera camera0;
+  UsbCamera camera1;
+  NetworkTableEntry cameraSelection;
+
+  double startTime;
+
   public Robot()
   {
     instance = this;
 
-    CameraServer.startAutomaticCapture();
+    camera0 = CameraServer.startAutomaticCapture(0);
+    camera1 = CameraServer.startAutomaticCapture(1);
+    cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
 
   }
 
@@ -52,6 +63,7 @@ public class Robot extends TimedRobot
   @Override
   public void robotInit()
   {
+    double startTime = Timer.getFPGATimestamp();
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
@@ -82,6 +94,15 @@ public class Robot extends TimedRobot
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+      SmartDashboard.putNumber(
+      "CAN Utilization %", RobotController.getCANStatus().percentBusUtilization * 100.0);
+  SmartDashboard.putNumber("Voltage", RobotController.getBatteryVoltage());
+  SmartDashboard.putNumber("CPU Temperature", RobotController.getCPUTemp());
+  SmartDashboard.putBoolean("RSL", RobotController.getRSLState());
+  SmartDashboard.putNumber("Match Time", DriverStation.getMatchTime());
+  double codeRuntime = (Timer.getFPGATimestamp() - startTime) * 1000.0;
+  SmartDashboard.putNumber("Code Runtime (ms)", codeRuntime);
   }
 
   /**
