@@ -24,26 +24,25 @@ import edu.wpi.first.wpilibj2.command.button.CommandPS5Controller;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
-
+import frc.robot.commands.wrist.wristRotate;
+import frc.robot.commands.wrist.wristRotateOther;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import frc.robot.subsystems.grabber;
-import frc.robot.subsystems.arm;
+import frc.robot.subsystems.wrist;
+import frc.robot.subsystems.armPivot;
+import frc.robot.subsystems.armExtension;
 import frc.robot.subsystems.elevator;
 
 import frc.robot.commands.grabber.grabberOut;
 import frc.robot.commands.grabber.grabberIn;
 import frc.robot.commands.grabber.grabberStop;
 import frc.robot.commands.grabber.compressorEnable;
-import frc.robot.commands.grabber.wristRotate;
-import frc.robot.commands.grabber.wristRotateOther;
-
-import frc.robot.commands.arm.armUp;
-import frc.robot.commands.arm.armDown;
-import frc.robot.commands.arm.armExtend;
-import frc.robot.commands.arm.armRetract;
-import frc.robot.commands.arm.armPivotStop;
-import frc.robot.commands.arm.armExtensionStop;
-
+import frc.robot.commands.armExtension.armExtend;
+import frc.robot.commands.armExtension.armExtensionStop;
+import frc.robot.commands.armExtension.armRetract;
+import frc.robot.commands.armPivot.armDown;
+import frc.robot.commands.armPivot.armPivotStop;
+import frc.robot.commands.armPivot.armUp;
 import frc.robot.commands.elevator.elevatorDown;
 import frc.robot.commands.elevator.elevatorEncoderReset;
 import frc.robot.commands.elevator.elevatorUp;
@@ -62,7 +61,9 @@ public class RobotContainer
 private final SendableChooser<Command> autoChooser;
 
   public final static grabber grabber = new grabber();
-  public final static arm arm = new arm();
+  public final static wrist wrist = new wrist();
+  public final static armPivot armPivot = new armPivot();
+  public final static armExtension armExtension = new armExtension();
   public final static elevator elevator = new elevator();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -175,9 +176,9 @@ private final SendableChooser<Command> autoChooser;
     NamedCommands.registerCommand("Elevator Stop", new elevatorStop());
 
     //Auto NamedCommands
-    NamedCommands.registerCommand("Left AimAtReef", this.drivebase.aimAtReef(2, 'l'));
-    NamedCommands.registerCommand("Center AimAtReef", this.drivebase.aimAtReef(2, 'c'));
-    NamedCommands.registerCommand("Right AimAtReef", this.drivebase.aimAtReef(2, 'r'));
+    //NamedCommands.registerCommand("Left AimAtReef", this.drivebase.aimAtReef(2, 'l'));
+    //NamedCommands.registerCommand("Center AimAtReef", this.drivebase.aimAtReef(2, 'c'));
+    //NamedCommands.registerCommand("Right AimAtReef", this.drivebase.aimAtReef(2, 'r'));
   }
 
   /**

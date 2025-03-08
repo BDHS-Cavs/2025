@@ -1,4 +1,4 @@
-package frc.robot.commands.arm;
+package frc.robot.commands.armExtension;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -6,15 +6,15 @@ import frc.robot.RobotContainer;
 
 public class armExtend extends Command{
     public armExtend(){
-        addRequirements(RobotContainer.arm);
+        addRequirements(RobotContainer.armExtension);
     }
 
     public void execute() {
-        RobotContainer.arm.armExtend();
+        RobotContainer.armExtension.armExtend();
     }
 
     public void end(boolean interrupted) {
-        RobotContainer.arm.armExtensionStop();
+        RobotContainer.armExtension.armExtensionStop();
     }
 
 }

@@ -269,27 +269,27 @@ public class SwerveSubsystem extends SubsystemBase
     return new Rotation2d(relativeTrl.getX(), relativeTrl.getY()).plus(swerveDrive.getOdometryHeading());
   }
 
-  public Rotation2d getReefYaw(char position)
-  {
-    int allianceAprilTag = -1; // default value so it doesnt complain about "may not have been initialized bc there was no confirmation it was called" or something //TODO might be able to remove when more is done with it
-    
-    if(position == 'l') { //left go blue 21 or red 10
-      allianceAprilTag = DriverStation.getAlliance().get() == Alliance.Blue ? 21 : 10;
-    }
-
-    if(position == 'c') { //center go blue 20 or red 11
-      allianceAprilTag = DriverStation.getAlliance().get() == Alliance.Blue ? 20 : 11;
-    }
-
-    if(position == 'r') { //right go blue 19 or red 6
-      allianceAprilTag = DriverStation.getAlliance().get() == Alliance.Blue ? 19 : 6;
-    }
-
-    // Taken from PhotonUtils.getYawToPose()
-    Pose3d        speakerAprilTagPose = aprilTagFieldLayout.getTagPose(allianceAprilTag).get();
-    Translation2d relativeTrl         = speakerAprilTagPose.toPose2d().relativeTo(getPose()).getTranslation();
-    return new Rotation2d(relativeTrl.getX(), relativeTrl.getY()).plus(swerveDrive.getOdometryHeading());
-  }
+  //public Rotation2d getReefYaw(char position)
+  //{
+  //  int allianceAprilTag = -1; // default value so it doesnt complain about "may not have been initialized bc there was no confirmation it was called" or something //TODO might be able to remove when more is done with it
+  //  
+  //  if(position == 'l') { //left go blue 21 or red 10
+  //    allianceAprilTag = DriverStation.getAlliance().get() == Alliance.Blue ? 21 : 10;
+  //  }
+//
+  //  if(position == 'c') { //center go blue 20 or red 11
+  //    allianceAprilTag = DriverStation.getAlliance().get() == Alliance.Blue ? 20 : 11;
+  //  }
+//
+  //  if(position == 'r') { //right go blue 19 or red 6
+  //    allianceAprilTag = DriverStation.getAlliance().get() == Alliance.Blue ? 19 : 6;
+  //  }
+//
+  //  // Taken from PhotonUtils.getYawToPose()
+  //  Pose3d        speakerAprilTagPose = aprilTagFieldLayout.getTagPose(allianceAprilTag).get();
+  //  Translation2d relativeTrl         = speakerAprilTagPose.toPose2d().relativeTo(getPose()).getTranslation();
+  //  return new Rotation2d(relativeTrl.getX(), relativeTrl.getY()).plus(swerveDrive.getOdometryHeading());
+  //}
 
   /**
    * Aim the robot at the speaker.
@@ -310,18 +310,18 @@ public class SwerveSubsystem extends SubsystemBase
         }).until(() -> Math.abs(getSpeakerYaw().minus(getHeading()).getDegrees()) < tolerance);
   }
 
-  public Command aimAtReef(double tolerance, char position)
-  {
-    SwerveController controller = swerveDrive.getSwerveController();
-    return run(
-        () -> {
-          ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(0, 0,
-                                                   controller.headingCalculate(getHeading().getRadians(),
-                                                                               getReefYaw(position).getRadians()),
-                                                                       getHeading());
-          drive(speeds);
-        }).until(() -> Math.abs(getSpeakerYaw().minus(getHeading()).getDegrees()) < tolerance);
-  }
+  //public Command aimAtReef(double tolerance, char position)
+  //{
+  //  SwerveController controller = swerveDrive.getSwerveController();
+  //  return run(
+  //      () -> {
+  //        ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(0, 0,
+  //                                                 controller.headingCalculate(getHeading().getRadians(),
+  //                                                                             getReefYaw(position).getRadians()),
+  //                                                                     getHeading());
+  //        drive(speeds);
+  //      }).until(() -> Math.abs(getSpeakerYaw().minus(getHeading()).getDegrees()) < tolerance);
+  //}
 
 
   /**

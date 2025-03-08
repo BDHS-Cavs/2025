@@ -3,38 +3,26 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkMaxConfig;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.ArmConstants;
 
-public class arm extends SubsystemBase {
+public class armExtension extends SubsystemBase {
 
-  SparkMax m_armExtensionMotor = new SparkMax(ArmConstants.armExtensionMotorID, ArmConstants.armMotorType); //pivot motor
-  SparkMax m_armPivotMotor = new SparkMax(ArmConstants.armPivotMotorID,ArmConstants.armMotorType); //extension motor
+  SparkMax m_armExtensionMotor = new SparkMax(ArmConstants.armExtensionMotorID, ArmConstants.armMotorType); //extension motor
 
   AnalogInput m_armExtensionLimitSwitch = new AnalogInput(ArmConstants.armExtensionLimitID);
   AnalogInput m_armRetractionLimitSwitch = new AnalogInput(ArmConstants.armRetractionLimitID);
 
 //TODO set motor to brake? -- with sparkmax i think rev hardware client does it
 
-  public arm(){ //init
+  public armExtension(){ //init
   }
 
   public void periodic(){ //periodic
     SmartDashboard.putNumber("Arm Extension Limit", m_armExtensionLimitSwitch.getValue());
-    SmartDashboard.putNumber("Arm Retraction Limit", m_armRetractionLimitSwitch.getValue());
-  }
-
-  public void armUp(){
-      m_armPivotMotor.set(1.0); //raise
-  }
-
-  public void armDown(){
-      m_armPivotMotor.set(-1.0); //lower
-  }
-
-  public void armPivotStop(){
-    m_armPivotMotor.set(0.0); //stop pivot motor
   }
 
   public void armExtend(){

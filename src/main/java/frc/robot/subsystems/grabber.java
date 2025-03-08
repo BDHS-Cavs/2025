@@ -19,8 +19,6 @@ public class grabber extends SubsystemBase {
 
   PneumaticHub m_pneumaticHub = new PneumaticHub(PneumaticConstants.pneumaticHubID);
 
-  DoubleSolenoid m_wristSolenoid = new DoubleSolenoid(PneumaticConstants.pneumaticHubID, PneumaticConstants.pneumaticHubModuleType, GrabberConstants.wristSolenoidForwardID, GrabberConstants.wristSolenoidBackwardID);
-
   public grabber(){ //init
   }
 
@@ -42,17 +40,5 @@ public class grabber extends SubsystemBase {
 
   public void grabberStop(){
     m_grabberMotor.set(0.0);
-  }
-
-  public void compressorDisable(){
-    m_pneumaticHub.disableCompressor();
-  }
-
-  public void wristRotate(){
-    m_wristSolenoid.set(Value.kForward);
-  }
-
-  public void wristRotateOther(){
-    m_wristSolenoid.set(Value.kReverse);
   }
   }
