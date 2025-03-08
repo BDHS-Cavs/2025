@@ -58,6 +58,8 @@ public final class Constants
     public static final int armExtensionMotorID = 13; //13 can
     public static final int armPivotMotorID = 12; //12 can
     public static final MotorType armMotorType = MotorType.kBrushed;
+    public static final int armExtensionLimitID = 5; //1 navx aio (4)
+    public static final int armRetractionLimitID = 4; //0 navx aio (5)
   }
 
   public static class PneumaticConstants

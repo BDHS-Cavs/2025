@@ -30,9 +30,9 @@ public class elevator extends SubsystemBase {
   }
 
   public void elevatorUp(){
-    if(m_elevatorRelativeEncoder.getPosition() > -577) { //software limit switch
+    if(m_elevatorRelativeEncoder.getPosition() > -290) { //software limit switch
       m_latchSolenoid.set(true); //unlock
-      m_elevatorMotor.set(-0.5); //run motor //UP IS NEGATIVE DOWN IS POSITIVE
+      m_elevatorMotor.set(-1.0); //run motor //UP IS NEGATIVE DOWN IS POSITIVE
       }
     else {
       m_latchSolenoid.set(false); //lock
@@ -52,6 +52,7 @@ public class elevator extends SubsystemBase {
   }
 
   public void elevatorStop(){
+    m_latchSolenoid.set(true);
     m_elevatorMotor.set(0.0); //stop
   }
 

@@ -13,8 +13,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.studica.frc.AHRS;
-import com.studica.frc.AHRS.NavXComType;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
@@ -31,9 +32,13 @@ public class Robot extends TimedRobot
 
   private Timer disabledTimer;
 
+//TODO  UsbCamera camera1 = new UsbCamera("USB Camera 0", 0);
+
   public Robot()
   {
     instance = this;
+    //TODO CameraServer.startAutomaticCapture();
+    //TODO camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
   }
 
   public static Robot getInstance()

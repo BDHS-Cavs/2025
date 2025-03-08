@@ -37,7 +37,7 @@ public class grabber extends SubsystemBase {
   }
 
   public void grabberIn(){
-    m_grabberMotor.set(-0.5);
+    m_grabberMotor.set(-1.0);
   }
 
   public void grabberStop(){
