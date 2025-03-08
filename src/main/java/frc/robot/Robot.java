@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSink;
 import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
 
 /**
@@ -32,13 +33,12 @@ public class Robot extends TimedRobot
 
   private Timer disabledTimer;
 
-//TODO  UsbCamera camera1 = new UsbCamera("USB Camera 0", 0);
-
   public Robot()
   {
     instance = this;
-    //TODO CameraServer.startAutomaticCapture();
-    //TODO camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+
+    CameraServer.startAutomaticCapture();
+
   }
 
   public static Robot getInstance()
@@ -64,6 +64,7 @@ public class Robot extends TimedRobot
     {
       DriverStation.silenceJoystickConnectionWarning(true);
     }
+
   }
 
   /**
