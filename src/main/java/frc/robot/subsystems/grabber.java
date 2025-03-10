@@ -23,7 +23,6 @@ public class grabber extends SubsystemBase {
   }
 
   public void periodic() { //periodic
-    SmartDashboard.putNumber("compressor analog voltage", m_pneumaticHub.getCompressorCurrent());
   }
 
   public void compressorEnable(){

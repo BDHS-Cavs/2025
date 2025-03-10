@@ -47,7 +47,7 @@ public final class Constants
   public static class GrabberConstants
   {
     public static final int grabberMotorID = 10; //10 can
-    public static final MotorType grabberMotorType = MotorType.kBrushed;
+    public static final MotorType grabberMotorType = MotorType.kBrushless;
 
     public static final int wristSolenoidForwardID = 1; //pneumatic hub channel 1 forward
     public static final int wristSolenoidBackwardID = 2; //pneumatic hub channel 2 backward
