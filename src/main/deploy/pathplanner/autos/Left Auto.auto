@@ -71,6 +71,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "left path 3"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Arm Down"
@@ -91,7 +97,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "left path 3"
+            "pathName": "left path 4"
           }
         }
       ]

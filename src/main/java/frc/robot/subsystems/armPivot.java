@@ -23,13 +23,13 @@ public class armPivot extends SubsystemBase {
   }
 
   public void armUp(){
-      m_armPivot1Motor.set(0.7); //raise 1
-      m_armPivot2Motor.set(-0.7); //raise 2
+      m_armPivot1Motor.set(-1.0); //raise 1
+      m_armPivot2Motor.set(1.0); //raise 2
   }
 
   public void armDown(){
-      m_armPivot1Motor.set(-0.7); //lower 1
-      m_armPivot2Motor.set(0.7); //lower 2
+      m_armPivot1Motor.set(0.7); //lower 1
+      m_armPivot2Motor.set(-0.7); //lower 2
   }
 
   public void armPivotStop(){
