@@ -47,6 +47,7 @@ import frc.robot.commands.elevator.elevatorDown;
 import frc.robot.commands.elevator.elevatorEncoderReset;
 import frc.robot.commands.elevator.elevatorUp;
 import frc.robot.commands.elevator.elevatorStop;
+import frc.robot.commands.elevator.elevatorDownBypass;
 
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -236,6 +237,7 @@ private final SendableChooser<Command> autoChooser;
       controller.start().whileTrue(new elevatorUp());                 //        Start   =   Elevator Up
       controller.back().whileTrue(new elevatorDown());                //         Back   =   Elevator Down
 
+      controller.rightTrigger().whileTrue(new elevatorDownBypass());    // Right Trigger   =   Elevator Down BYPASSES LIMIT   //TODO remove?
       controller.leftTrigger().onTrue(new elevatorEncoderReset());    // Left Trigger   =   Elevator Encoder Reset   //ontrue   //TODO remove?
 
     }

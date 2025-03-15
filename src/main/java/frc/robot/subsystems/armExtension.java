@@ -22,7 +22,32 @@ public class armExtension extends SubsystemBase {
   }
 
   public void periodic(){ //periodic
-    SmartDashboard.putNumber("Arm Extension Limit", m_armExtensionLimitSwitch.getValue());
+    //armExtensionLimitReached();
+    //armRetractionLimitReached();
+    SmartDashboard.putBoolean("Arm Extension Limit Reached", armExtensionLimitReached());
+    SmartDashboard.putBoolean("Arm Retraction Limit Reached", armRetractionLimitReached());
+  }
+
+  public boolean armExtensionLimitReached() {
+    if(m_armExtensionLimitSwitch.getValue() > 10)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  public boolean armRetractionLimitReached() {
+    if(m_armRetractionLimitSwitch.getValue() < 10)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 
   public void armExtend(){

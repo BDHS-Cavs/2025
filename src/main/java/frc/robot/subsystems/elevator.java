@@ -51,6 +51,12 @@ public class elevator extends SubsystemBase {
     }
   }
 
+  public void elevatorDownBypass(){
+    m_latchSolenoid.set(true); //unlock
+    m_elevatorMotor.set(0.7); //run motor //UP IS NEGATIVE DOWN IS POSITIVE
+    //THIS BYPASSES THE LIMIT! DONT RUN TOO FAR!
+  }
+
   public void elevatorStop(){
     m_elevatorMotor.set(0.0); //stop
   }
